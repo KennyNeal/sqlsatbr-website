@@ -175,13 +175,18 @@ h2 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
+  justify-content: center;
 }
 
 .sponsor-grid-global {
   grid-template-columns: minmax(0, 22rem);
-  justify-content: start;
 }
 
+.sponsor-grid-facility {
+  grid-template-columns: minmax(0, 20rem);
+}
+
+.sponsor-grid-facility,
 .sponsor-grid-platinum,
 .sponsor-grid-gold,
 .sponsor-grid-silver {
@@ -207,6 +212,10 @@ h2 {
 
 .sponsor-card-global,
 .sponsor-card-platinum {
+  height: 9.75rem;
+}
+
+.sponsor-card-facility {
   height: 9.75rem;
 }
 
@@ -246,17 +255,30 @@ h2 {
   overflow: hidden;
 }
 
+.sponsor-logo-frame-fit-wide {
+  padding-inline: 0.25rem;
+}
+
+.sponsor-logo-frame-fit-extra-wide {
+  width: calc(100% + 1rem);
+  margin-inline: -0.5rem;
+}
+
 .sponsor-logo-frame-global,
 .sponsor-logo-frame-platinum {
-  height: 4.25rem;
+  height: 4.75rem;
+}
+
+.sponsor-logo-frame-facility {
+  height: 4.75rem;
 }
 
 .sponsor-logo-frame-gold {
-  height: 3.5rem;
+  height: 3.9rem;
 }
 
 .sponsor-logo-frame-silver {
-  height: 2.75rem;
+  height: 3.1rem;
 }
 
 .sponsor-logo {
@@ -268,17 +290,30 @@ h2 {
   object-fit: contain;
 }
 
+.sponsor-logo-fit-wide {
+  max-width: 100%;
+}
+
+.sponsor-logo-fit-extra-wide {
+  width: 100%;
+  max-width: none;
+}
+
 .sponsor-logo-global,
 .sponsor-logo-platinum {
-  max-width: 15rem;
+  max-width: 16.5rem;
+}
+
+.sponsor-logo-facility {
+  max-width: 13rem;
 }
 
 .sponsor-logo-gold {
-  max-width: 12rem;
+  max-width: 13.5rem;
 }
 
 .sponsor-logo-silver {
-  max-width: 9.5rem;
+  max-width: 10.75rem;
 }
 
 .sponsor-name {
@@ -295,37 +330,43 @@ h2 {
   -webkit-box-orient: vertical;
 }
 
+.sponsor-name-compact {
+  font-size: 0.82rem;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
 @media (min-width: 40rem) {
   .sponsor-grid-platinum {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 22rem));
   }
 
   .sponsor-grid-gold {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 18rem));
   }
 
   .sponsor-grid-silver {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 16rem));
   }
 }
 
 @media (min-width: 60rem) {
   .sponsor-grid-gold {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 16rem));
   }
 
   .sponsor-grid-silver {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 12rem));
   }
 }
 
 @media (min-width: 72rem) {
   .sponsor-grid-gold {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 14rem));
   }
 
   .sponsor-grid-silver {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 11rem));
   }
 }
 

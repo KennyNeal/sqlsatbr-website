@@ -4,8 +4,9 @@ groups:
     logoWidth: 1000
     sponsors:
       - name: Microsoft/AMD
-        url: https://www.microsoft.com/
-        logo: https://lh3.googleusercontent.com/sitesv/AA5AbUCXL9aXeGatF-Mfrvi8AZu5t2swHhYaNSEgN0oPXx-bg5XDsrc6LDBs7pwOVZ8N-jgShXTwiKki-TDOFBLQYUQIUG5wXogRZUxunk7tQoFEHfnRuKFZza1ABuSMfuDvqmuPOTV7AfZ7mfk3DOoICTN-QEyy3Tny1zs5YIRHmKdAb5LGXdRygpeGwWJ1h4Y=w16383
+        url: https://aka.ms/AMD_EPYC_RelationalDB
+        logo: sponsors/2026/ms-amd.png
+        logoFit: extra-wide
   - title: Platinum Sponsors
     tier: platinum
     logoWidth: 1000
@@ -22,6 +23,13 @@ groups:
       - name: Red Gate
         url: https://www.red-gate.com/
         logo: sponsors/2026/red-gate.svg
+  - title: Facility Sponsor
+    tier: facility
+    logoWidth: 1000
+    sponsors:
+      - name: Louisiana State University
+        url: https://www.lsu.edu/business/sdeis/index.php
+        logo: sponsors/2026/lsu-sdeis-logo.png
   - title: Gold Sponsors
     tier: gold
     logoWidth: 800
@@ -35,9 +43,10 @@ groups:
       - name: EisnerAmper
         url: https://www.eisneramper.com/
         logo: sponsors/2026/eisneramper.jpg
+        logoFit: extra-wide
       - name: ISACA Baton Rouge
         url: https://engage.isaca.org/batonrougechapter/home
-        logo: sponsors/2026/isaca-baton-rouge.png
+        logo: sponsors/2026/isaca-baton-rouge.jpg
       - name: MMR
         url: https://mmrgrp.com/
         logo: sponsors/2026/mmr.svg
@@ -56,11 +65,12 @@ groups:
     sponsors:
       - name: ISC2
         url: http://isc2-cgcchapter.org/
-        logo: https://lh3.googleusercontent.com/sitesv/AA5AbUDWDrwPF4LmLQ--jSgq840pfu3iCJHeNjO0q2Xzw_np0GUKASHDq2gboiy6HIvAD91D91FBErPsNLWMJreo6aaV1Qm4uKNKwnJB39fiyjpxn5OlbLLz7L-Z0RuJ9iKES28eFj63I6JgiHT0O76Uei6feNh57OE4ZYmw1CR2-c4eCAWQTaTQ1BiJAON0WiMf1AQsqhS4oD6XMnQlL3piZJJt3P6u-R1gqDnTggnk=w1280
+        logo: sponsors/2026/isc2.png
       - name: Louisiana Technology Industry Association
         url: https://www.techinla.net/
         logo: sponsors/2026/ltia.png
-      - name: PCG
+        logoFit: extra-wide
+      - name: The Personnel Consulting Group
         url: http://www.pcgrecruit.com/
         logo: sponsors/2026/pcg.png
       - name: Sparkhound

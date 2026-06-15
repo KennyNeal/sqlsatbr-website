@@ -18,22 +18,28 @@
             <div class="sponsor-grid sponsor-grid-{{ $tier }}">
               {{ range .sponsors }}
                 {{ $logoSrc := .logo }}
+                {{ $logoFit := .logoFit | default "standard" }}
+                {{ $nameLength := len .name }}
+                {{ $nameClass := "" }}
+                {{ if ge $nameLength 28 }}
+                  {{ $nameClass = " sponsor-name-compact" }}
+                {{ end }}
                 {{ if and .logo (not (hasPrefix .logo "http://")) (not (hasPrefix .logo "https://")) }}
                   {{ $logoSrc = .logo | relURL }}
                 {{ end }}
                 {{ if .url }}
                   <a class="sponsor-card sponsor-card-{{ $tier }}" href="{{ .url }}">
-                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}">
-                      <img class="sponsor-logo sponsor-logo-{{ $tier }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
+                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}{{ if ne $logoFit "standard" }} sponsor-logo-frame-fit-{{ $logoFit }}{{ end }}">
+                      <img class="sponsor-logo sponsor-logo-{{ $tier }}{{ if ne $logoFit "standard" }} sponsor-logo-fit-{{ $logoFit }}{{ end }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
                     </span>
-                    <span class="sponsor-name">{{ .name }}</span>
+                    <span class="sponsor-name{{ $nameClass }}">{{ .name }}</span>
                   </a>
                 {{ else }}
                   <div class="sponsor-card sponsor-card-static sponsor-card-{{ $tier }}">
-                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}">
-                      <img class="sponsor-logo sponsor-logo-{{ $tier }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card-static').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
+                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}{{ if ne $logoFit "standard" }} sponsor-logo-frame-fit-{{ $logoFit }}{{ end }}">
+                      <img class="sponsor-logo sponsor-logo-{{ $tier }}{{ if ne $logoFit "standard" }} sponsor-logo-fit-{{ $logoFit }}{{ end }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card-static').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
                     </span>
-                    <span class="sponsor-name">{{ .name }}</span>
+                    <span class="sponsor-name{{ $nameClass }}">{{ .name }}</span>
                   </div>
                 {{ end }}
               {{ end }}
