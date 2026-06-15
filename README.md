@@ -1,6 +1,6 @@
 # Day of Data Baton Rouge Website
 
-This repository hosts the rebuilt public website for Day of Data Baton Rouge.
+This repository hosts the rebuilt public website and Cloudflare Worker companion for Day of Data Baton Rouge.
 
 ## Publication PR flow
 
