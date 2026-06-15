@@ -257,7 +257,7 @@ async function createPayPalInvoice(submission, packageAmount, accessToken, env) 
 
   const body = await response.json();
   if (!response.ok || !body.id) {
-    throw new Error("PayPal could not create the invoice.");
+    throw new Error(extractPayPalError(body, "PayPal could not create the invoice."));
   }
 
   return body;
@@ -281,7 +281,10 @@ async function sendPayPalInvoice(invoiceId, accessToken, env) {
     return;
   }
 
-  throw new Error("PayPal created the invoice, but it could not be sent.");
+  const body = await response.json().catch(() => null);
+  throw new Error(
+    extractPayPalError(body, "PayPal created the invoice, but it could not be sent."),
+  );
 }
 
 function validatePayPalConfig(env) {
@@ -483,4 +486,36 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function extractPayPalError(body, fallbackMessage) {
+  if (!body || typeof body !== "object") {
+    return fallbackMessage;
+  }
+
+  const issue = Array.isArray(body.details) && body.details.length > 0 ? body.details[0].issue : "";
+  const description =
+    Array.isArray(body.details) && body.details.length > 0 ? body.details[0].description : "";
+  const message = normalizeText(body.message);
+  const debugId = normalizeText(body.debug_id);
+
+  const parts = [fallbackMessage];
+
+  if (message) {
+    parts.push(message);
+  }
+
+  if (issue) {
+    parts.push(`Issue: ${issue}`);
+  }
+
+  if (description) {
+    parts.push(description);
+  }
+
+  if (debugId) {
+    parts.push(`PayPal debug_id: ${debugId}`);
+  }
+
+  return parts.join(" ");
 }
