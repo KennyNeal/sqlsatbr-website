@@ -194,9 +194,16 @@ async function getPayPalAccessToken(env) {
     body: "grant_type=client_credentials",
   });
 
-  const body = await response.json();
+  const { body, rawBody } = await readPayPalResponse(response);
   if (!response.ok || !body.access_token) {
-    throw new Error("PayPal authentication failed. Check the Worker PayPal secrets.");
+    throw new Error(
+      extractPayPalError(
+        body,
+        "PayPal authentication failed. Check the Worker PayPal secrets.",
+        response.status,
+        rawBody,
+      ),
+    );
   }
 
   return body.access_token;
@@ -255,9 +262,11 @@ async function createPayPalInvoice(submission, packageAmount, accessToken, env) 
     body: JSON.stringify(payload),
   });
 
-  const body = await response.json();
+  const { body, rawBody } = await readPayPalResponse(response);
   if (!response.ok || !body.id) {
-    throw new Error(extractPayPalError(body, "PayPal could not create the invoice."));
+    throw new Error(
+      extractPayPalError(body, "PayPal could not create the invoice.", response.status, rawBody),
+    );
   }
 
   return body;
@@ -281,9 +290,14 @@ async function sendPayPalInvoice(invoiceId, accessToken, env) {
     return;
   }
 
-  const body = await response.json().catch(() => null);
+  const { body, rawBody } = await readPayPalResponse(response);
   throw new Error(
-    extractPayPalError(body, "PayPal created the invoice, but it could not be sent."),
+    extractPayPalError(
+      body,
+      "PayPal created the invoice, but it could not be sent.",
+      response.status,
+      rawBody,
+    ),
   );
 }
 
@@ -488,9 +502,29 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function extractPayPalError(body, fallbackMessage) {
+async function readPayPalResponse(response) {
+  const rawBody = await response.text();
+
+  try {
+    return {
+      body: rawBody ? JSON.parse(rawBody) : null,
+      rawBody,
+    };
+  } catch {
+    return {
+      body: null,
+      rawBody,
+    };
+  }
+}
+
+function extractPayPalError(body, fallbackMessage, status, rawBody) {
   if (!body || typeof body !== "object") {
-    return fallbackMessage;
+    if (rawBody) {
+      return `${fallbackMessage} HTTP ${status}. ${rawBody}`;
+    }
+
+    return `${fallbackMessage} HTTP ${status}.`;
   }
 
   const issue = Array.isArray(body.details) && body.details.length > 0 ? body.details[0].issue : "";
@@ -515,6 +549,10 @@ function extractPayPalError(body, fallbackMessage) {
 
   if (debugId) {
     parts.push(`PayPal debug_id: ${debugId}`);
+  }
+
+  if (!message && !issue && !description && rawBody) {
+    parts.push(rawBody);
   }
 
   return parts.join(" ");
