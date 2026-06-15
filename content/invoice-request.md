@@ -1,6 +1,8 @@
 ---
 title: Invoice Request
 description: Sponsor Intake guidance for sponsors who need Day of Data Baton Rouge invoicing instead of immediate checkout.
+layout: invoice-request
+workerEndpoint: https://sqlsatbr-website.kneal30.workers.dev/api/invoice-request
 ---
 
 An **Invoice Request** is the right path when your organization needs an invoice for accounts payable, ACH, or check processing instead of paying immediately.
@@ -18,13 +20,9 @@ Prepare this **Sponsor Intake** information before you start:
 7. Preferred payment method such as ACH or check
 8. Any notes the organizers should know about billing or Sponsor Listing details
 
-## Current invoice request path
+## Submit your invoice request
 
-Use the current sponsor intake form to submit your request for the 2026 Event Year:
-
-- [Open the sponsor intake form](https://docs.google.com/forms/d/e/1FAIpQLSeYTQBlIC2UByJCf1vqn6JabDY0nz3ToNRKf6TCQ6YbxPIFsQ/viewform)
-
-After submission, an organizer can follow up on billing details and the public Sponsor Listing for the Event Year.
+Use the form below to submit your **Sponsor Intake** for the 2026 Event Year. After submission, an organizer can follow up on billing details and the public Sponsor Listing for the Event Year.
 
 ## Before you submit
 

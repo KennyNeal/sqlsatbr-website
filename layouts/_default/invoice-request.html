@@ -1,0 +1,132 @@
+{{ define "main" }}
+  <article class="card stack">
+    <header class="stack stack-tight">
+      <p class="eyebrow">Day of Data Baton Rouge</p>
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    </header>
+    <div class="stack prose">
+      {{ .Content }}
+    </div>
+    <form class="intake-form stack" method="post" action="{{ .Params.workerEndpoint }}">
+      <div class="intake-grid">
+        <label class="field stack-tight" for="organizationName">
+          <span>Sponsor organization name</span>
+          <input id="organizationName" name="organizationName" type="text" required>
+        </label>
+        <label class="field stack-tight" for="primaryContactName">
+          <span>Primary contact name</span>
+          <input id="primaryContactName" name="primaryContactName" type="text" required>
+        </label>
+        <label class="field stack-tight" for="contactEmail">
+          <span>Contact email address</span>
+          <input id="contactEmail" name="contactEmail" type="email" required>
+        </label>
+        <label class="field stack-tight" for="contactPhone">
+          <span>Contact phone number</span>
+          <input id="contactPhone" name="contactPhone" type="tel" required>
+        </label>
+        <label class="field stack-tight" for="sponsorPackage">
+          <span>Requested Sponsor Package</span>
+          <select id="sponsorPackage" name="sponsorPackage" required>
+            <option value="">Select a package</option>
+            <option>Blog</option>
+            <option>Bronze</option>
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Unattended Booth</option>
+            <option>Platinum</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="field stack-tight" for="billingContactEmail">
+          <span>Billing contact or accounts payable email</span>
+          <input id="billingContactEmail" name="billingContactEmail" type="email" required>
+        </label>
+        <label class="field stack-tight" for="preferredPaymentMethod">
+          <span>Preferred payment method</span>
+          <select id="preferredPaymentMethod" name="preferredPaymentMethod" required>
+            <option value="">Select a payment method</option>
+            <option>ACH</option>
+            <option>Check</option>
+            <option>Credit card</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="field stack-tight field-hidden" for="companyWebsite">
+          <span>Company website</span>
+          <input id="companyWebsite" name="companyWebsite" type="text" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
+      <label class="field stack-tight" for="notes">
+        <span>Notes for organizers</span>
+        <textarea id="notes" name="notes" rows="5" placeholder="Share billing notes, package questions, or Sponsor Listing details."></textarea>
+      </label>
+      <div class="stack stack-tight">
+        <button class="button" type="submit">Submit invoice request</button>
+        <p class="lede intake-status" data-intake-status hidden></p>
+      </div>
+    </form>
+    <script>
+      (function () {
+        var form = document.querySelector(".intake-form");
+        var status = document.querySelector("[data-intake-status]");
+
+        if (!form || !status) {
+          return;
+        }
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          status.hidden = true;
+          status.textContent = "";
+
+          var submitter = form.querySelector("button[type='submit']");
+          if (submitter) {
+            submitter.disabled = true;
+          }
+
+          var formData = new FormData(form);
+          var payload = {};
+
+          formData.forEach(function (value, key) {
+            payload[key] = value;
+          });
+
+          try {
+            var response = await fetch(form.action, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+
+            var body = await response.json();
+
+            if (!response.ok || !body.ok) {
+              throw new Error(body.message || "Invoice request submission failed.");
+            }
+
+            form.reset();
+            status.textContent = body.message;
+            status.classList.remove("intake-status-error");
+            status.classList.add("intake-status-success");
+            status.hidden = false;
+          } catch (error) {
+            status.textContent = error.message || "Invoice request submission failed.";
+            status.classList.remove("intake-status-success");
+            status.classList.add("intake-status-error");
+            status.hidden = false;
+          } finally {
+            if (submitter) {
+              submitter.disabled = false;
+            }
+          }
+        });
+      })();
+    </script>
+  </article>
+{{ end }}

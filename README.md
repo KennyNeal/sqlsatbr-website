@@ -37,6 +37,30 @@ To create the production build locally, run:
 hugo
 ```
 
+## Cloudflare Worker companion
+
+This repository now also contains the **Cloudflare Worker companion** for sponsor intake.
+
+1. `worker/src/index.js` exposes the Worker routes.
+2. `wrangler.jsonc` points Cloudflare at the Worker entrypoint.
+3. `content/invoice-request.md` and `layouts/_default/invoice-request.html` provide the public invoice request form.
+
+### Invoice request route
+
+- `POST /api/invoice-request`
+
+The Worker validates the invoice request payload and forwards the private submission to the configured webhook destination outside the public repository.
+
+### Required Worker configuration
+
+Set this Worker secret in Cloudflare:
+
+- `SPONSOR_INTAKE_WEBHOOK_URL` - private webhook destination that will receive validated sponsor intake submissions
+
+Optional secret:
+
+- `SPONSOR_INTAKE_SHARED_SECRET` - shared secret sent as the `X-Sponsor-Intake-Secret` header when forwarding submissions
+
 ## Custom domain cutover
 
 The production **Canonical Domain** is `https://www.dayofdatabr.org/`.
