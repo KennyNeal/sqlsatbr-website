@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <section class="card stack">
+    <header class="stack stack-tight">
+      <p class="eyebrow">Day of Data Baton Rouge</p>
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    </header>
+    <div class="stack">
+      {{ if .Content }}<div class="prose">{{ .Content }}</div>{{ end }}
+      <ul class="list-reset">
+        {{ range .Pages }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </section>
+{{ end }}

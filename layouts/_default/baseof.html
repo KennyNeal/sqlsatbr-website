@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
+    <link rel="stylesheet" href="{{ "site.css" | relURL }}">
+  </head>
+  <body>
+    <div class="page-shell{{ with .Layout }} page-shell-{{ . }}{{ end }}">
+      <header class="site-header">
+        <p class="eyebrow">Publication PR tracer bullet</p>
+        <h1>{{ site.Title }}</h1>
+        <p class="tagline">{{ site.Params.tagline }}</p>
+      </header>
+      <main>
+        {{ block "main" . }}{{ end }}
+      </main>
+    </div>
+  </body>
+</html>

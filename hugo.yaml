@@ -1,0 +1,13 @@
+baseURL: https://kennyneal.github.io/sqlsatbr-website/
+locale: en-us
+title: Day of Data Baton Rouge
+
+params:
+  tagline: Public event information managed through Publication PRs.
+
+taxonomies: {}
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: false

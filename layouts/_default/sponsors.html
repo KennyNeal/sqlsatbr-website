@@ -1,0 +1,46 @@
+{{ define "main" }}
+  {{ $eventYearSponsors := index site.Data.sponsors "2026" }}
+  <article class="card stack">
+    <header class="stack stack-tight">
+      <p class="eyebrow">Day of Data Baton Rouge</p>
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    </header>
+    <div class="stack prose">
+      {{ .Content }}
+    </div>
+    {{ with $eventYearSponsors }}
+      <div class="stack sponsor-groups">
+        {{ range .groups }}
+          {{ $tier := .tier | default "standard" }}
+          <section class="stack stack-tight">
+            <h3>{{ .title }}</h3>
+            <div class="sponsor-grid sponsor-grid-{{ $tier }}">
+              {{ range .sponsors }}
+                {{ $logoSrc := .logo }}
+                {{ if and .logo (not (hasPrefix .logo "http://")) (not (hasPrefix .logo "https://")) }}
+                  {{ $logoSrc = .logo | relURL }}
+                {{ end }}
+                {{ if .url }}
+                  <a class="sponsor-card sponsor-card-{{ $tier }}" href="{{ .url }}">
+                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}">
+                      <img class="sponsor-logo sponsor-logo-{{ $tier }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
+                    </span>
+                    <span class="sponsor-name">{{ .name }}</span>
+                  </a>
+                {{ else }}
+                  <div class="sponsor-card sponsor-card-static sponsor-card-{{ $tier }}">
+                    <span class="sponsor-logo-frame sponsor-logo-frame-{{ $tier }}">
+                      <img class="sponsor-logo sponsor-logo-{{ $tier }}" src="{{ $logoSrc }}" alt="{{ .name }} logo" loading="lazy" onerror="this.closest('.sponsor-card-static').classList.add('sponsor-card-no-logo'); this.closest('.sponsor-logo-frame').remove();">
+                    </span>
+                    <span class="sponsor-name">{{ .name }}</span>
+                  </div>
+                {{ end }}
+              {{ end }}
+            </div>
+          </section>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+{{ end }}

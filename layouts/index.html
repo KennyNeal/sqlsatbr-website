@@ -1,0 +1,38 @@
+{{ define "main" }}
+  {{ $currentEventYear := site.GetPage (printf "/event-years/%s" .Params.currentEventYear) }}
+  <section class="hero card stack">
+    <p class="eyebrow">Current Event Year</p>
+    <h2>Day of Data Baton Rouge {{ .Params.currentEventYear }}</h2>
+    <div class="prose">{{ .Content }}</div>
+    {{ with $currentEventYear }}
+      <dl class="facts-grid">
+        <div>
+          <dt>Date</dt>
+          <dd>{{ .Params.dateRange }}</dd>
+        </div>
+        <div>
+          <dt>Friday PreCons venue</dt>
+          <dd>{{ .Params.preconsVenueName }}<br>{{ .Params.preconsVenueAddress }}</dd>
+        </div>
+        <div>
+          <dt>Saturday event venue</dt>
+          <dd>{{ .Params.eventVenueName }}<br>{{ .Params.eventVenueAddress }}</dd>
+        </div>
+      </dl>
+      <div class="button-row">
+        <a class="button" href="{{ .Params.registrationUrl }}">Register</a>
+        {{ with site.GetPage "/schedule" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Schedule</a>{{ end }}
+        {{ with site.GetPage "/precons" }}<a class="button button-secondary" href="{{ .RelPermalink }}">PreCons</a>{{ end }}
+        {{ with site.GetPage "/speakers" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Speakers</a>{{ end }}
+        {{ with site.GetPage "/sponsors" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Sponsors</a>{{ end }}
+        {{ with site.GetPage "/become-a-sponsor" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Become a Sponsor</a>{{ end }}
+        {{ with site.GetPage "/invoice-request" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Invoice Request</a>{{ end }}
+        {{ with site.GetPage "/archive" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Archive</a>{{ end }}
+      </div>
+      <div class="card card-subtle stack">
+        <h3>What to expect</h3>
+        <div class="prose">{{ .Content }}</div>
+      </div>
+    {{ end }}
+  </section>
+{{ end }}
