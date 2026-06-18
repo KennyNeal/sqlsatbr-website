@@ -680,6 +680,15 @@ a {
   margin-top: 0.5rem;
 }
 
+.sponsor-cta {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.sponsor-cta .button-row {
+  justify-content: center;
+}
+
 .sponsor-grid {
   display: grid;
   gap: 1rem;

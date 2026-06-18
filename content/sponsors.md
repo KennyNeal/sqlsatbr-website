@@ -1,11 +1,7 @@
 ---
 title: Sponsors
-description: Current Sponsor Listings for Day of Data Baton Rouge 2026.
+description: Thank you to the sponsors supporting Day of Data Baton Rouge 2026.
 layout: sponsors
 ---
 
-These **Sponsor Listings** reflect the organizer-approved 2026 public sponsor breakdown.
-
-## Sponsoring the 2026 Event Year
-
-The 2026 Event Year is already heavily booked for booth space. Review the current [Sponsor Packages]({{< relref "become-a-sponsor.md" >}}) for the latest package details and organizer guidance.
+Day of Data Baton Rouge is free for the community thanks to the generous support of these sponsors.

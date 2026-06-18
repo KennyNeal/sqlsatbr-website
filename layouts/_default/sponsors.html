@@ -50,6 +50,13 @@
         {{ end }}
       </div>
     {{ end }}
+    {{ with site.GetPage "/become-a-sponsor" }}
+      <div class="card card-subtle stack stack-tight sponsor-cta">
+        <h3>Interested in sponsoring?</h3>
+        <p>Are you or your company interested in supporting Day of Data Baton Rouge?</p>
+        <div class="button-row"><a class="button" href="{{ .RelPermalink }}">Become a Sponsor</a></div>
+      </div>
+    {{ end }}
     </div>
   </section>
 {{ end }}
