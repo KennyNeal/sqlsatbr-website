@@ -8,17 +8,6 @@
   {{ range $i, $p := .Params.precons }}
     <section class="section{{ if eq (mod $i 2) 1 }} section-light{{ end }}">
       <div class="section-inner stack">
-        <div class="precon-speaker">
-          {{ with $p.photo }}
-            <img class="precon-photo" src="{{ . | relURL }}" alt="{{ $p.name }}" width="200" height="200" loading="lazy">
-          {{ end }}
-          <div class="precon-speaker-meta stack stack-tight">
-            <h3 class="precon-name">{{ $p.name }}</h3>
-            {{ with $p.credential }}<p class="precon-credential">{{ . }}</p>{{ end }}
-            {{ range $p.bio }}<p>{{ . }}</p>{{ end }}
-            {{ with $p.registerUrl }}<p><a class="button" href="{{ . }}">Buy Tickets</a></p>{{ end }}
-          </div>
-        </div>
         <div class="precon-session stack">
           <h3 class="section-heading">{{ $p.title }}</h3>
           {{ range $p.description }}<p>{{ . }}</p>{{ end }}
@@ -33,6 +22,17 @@
             {{ end }}
           </div>
           {{ with $p.registerUrl }}<div class="button-row"><a class="button" href="{{ . }}">Buy Tickets</a></div>{{ end }}
+        </div>
+        <div class="precon-speaker">
+          {{ with $p.photo }}
+            <img class="precon-photo" src="{{ . | relURL }}" alt="{{ $p.name }}" width="200" height="200" loading="lazy">
+          {{ end }}
+          <div class="precon-speaker-meta stack stack-tight">
+            <h3 class="precon-name">{{ $p.name }}</h3>
+            {{ with $p.credential }}<p class="precon-credential">{{ . }}</p>{{ end }}
+            {{ range $p.bio }}<p>{{ . }}</p>{{ end }}
+            {{ with $p.registerUrl }}<p><a class="button" href="{{ . }}">Buy Tickets</a></p>{{ end }}
+          </div>
         </div>
       </div>
     </section>
