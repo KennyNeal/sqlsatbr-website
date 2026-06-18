@@ -11,6 +11,7 @@
         <div class="precon-session stack">
           <h3 class="section-heading">{{ $p.title }}</h3>
           {{ range $p.description }}<p>{{ . }}</p>{{ end }}
+          {{ with $p.registerUrl }}<div class="button-row"><a class="button" href="{{ . }}">Buy Tickets</a></div>{{ end }}
           <div class="precon-detail-grid">
             {{ range $p.sections }}
               <div class="precon-detail stack stack-tight">
@@ -21,7 +22,6 @@
               </div>
             {{ end }}
           </div>
-          {{ with $p.registerUrl }}<div class="button-row"><a class="button" href="{{ . }}">Buy Tickets</a></div>{{ end }}
         </div>
         <div class="precon-speaker">
           {{ with $p.photo }}
