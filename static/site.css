@@ -424,7 +424,9 @@ a {
 }
 
 .prose table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
 }
 
@@ -438,6 +440,17 @@ a {
 
 .prose th {
   background: #f8fbff;
+  color: var(--brand-navy);
+}
+
+/* Sponsorship benefit matrix: centered Yes/No cells, navy header column */
+.prose td:not(:first-child),
+.prose th:not(:first-child) {
+  text-align: center;
+}
+
+.prose tbody td:first-child {
+  font-weight: 700;
 }
 
 .intake-form {

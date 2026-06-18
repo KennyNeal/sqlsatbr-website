@@ -7,7 +7,7 @@
     </div>
   </header>
   <section class="section">
-    <div class="section-inner narrow">
+    <div class="section-inner{{ if not .Params.wide }} narrow{{ end }}">
       <div class="stack prose">
         {{ .Content }}
       </div>

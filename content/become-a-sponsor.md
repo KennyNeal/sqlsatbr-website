@@ -1,30 +1,28 @@
 ---
 title: Become a Sponsor
-description: Sponsor Packages and sponsor prospect information for Day of Data Baton Rouge 2026.
+description: Sponsorship opportunities for Day of Data Baton Rouge 2026.
+wide: true
 ---
 
-Day of Data Baton Rouge depends on **Sponsors** to keep the Event Year free for attendees while supporting venue, food, and community logistics.
+We appreciate your time to consider sponsoring Day of Data Baton Rouge 2026! We've put together some information that will tell you about our plans for the event. Your company has multiple sponsorship opportunities to maximize your Day of Data Baton Rouge 2026 presence to hundreds of local IT professionals.
 
-## Sponsor Packages
+## Sponsorship packages
 
-| Sponsor Package | Price | 2026 inventory guidance | Key public benefits |
-| --- | ---: | --- | --- |
-| Blog | $50 | Not limited | Logo on website |
-| Bronze | $250 | Not limited | Logo on website |
-| Silver | $600 | Flexible based on remaining floor space | Logo on website, swag bag insert, raffle recognition, small booth space |
-| Gold | $1500 | Flexible based on remaining floor space | Silver benefits plus attendee contact list, banquet invitations, email blast, large booth space |
-| Unattended Booth | $1750 | Hard limit of 1 | Logo on website, swag bag insert, raffle recognition, attendee contact list, small unattended booth space |
-| Platinum | $2500 | Flexible based on remaining floor space | Gold benefits plus extra email blast and exclusive presence options |
+| Benefit | Blog $50 | Bronze $250 | Silver $600 | Unattended Booth $1750 | Gold $1500 | Platinum $2500 |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Logo on Website | Yes | Yes | Yes | Yes | Yes | Yes |
+| Your Swag in 450 Bags | No | No | Yes | Yes | Yes | Yes |
+| Raffle Ticket for Day-End Raffle | No | No | Yes | Yes | Yes | Yes |
+| Booth Space | No | No | Small | Small | Large | Large |
+| Attendee Contact List (Excel format) | No | No | No | Yes | Yes | Yes |
+| Banquet Invitations | No | No | No | No | Yes | Yes |
+| Email Blast to Opted-In Attendees | No | No | No | No | Yes | Yes (x2) |
+| Exclusive Presence Options | No | No | No | No | No | Yes |
+| Premium Booth Space | No | No | No | No | No | Available |
 
-## 2026 booth-space guidance
+## Ready to sponsor?
 
-- The current 2026 booth-space mix is **4 Platinum**, **7 Gold**, **1 Unattended Booth**, and **4 Silver** sponsors.
-- **Unattended Booth** has the only hard cap at **1**.
-- **Platinum**, **Gold**, and **Silver** share the same physical booth footprint, so selling more Platinum reduces the space available for Gold and Silver.
-
-## Become a Sponsor
-
-Use the current sponsor interest form to start the organizer review process:
+Please contact us at [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com) with any questions.
 
 - [Submit sponsor interest for the 2026 Event Year](https://docs.google.com/forms/d/e/1FAIpQLSeYTQBlIC2UByJCf1vqn6JabDY0nz3ToNRKf6TCQ6YbxPIFsQ/viewform)
 - [Request an invoice for the 2026 Event Year]({{< relref "invoice-request.md" >}})
