@@ -3,7 +3,34 @@ locale: en-us
 title: Day of Data Baton Rouge
 
 params:
-  tagline: Public event information managed through Publication PRs.
+  tagline: A free, all-day event hosted by the Baton Rouge User Groups.
+
+menu:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Become a Volunteer
+      pageRef: /become-a-volunteer
+      weight: 20
+    - name: Become a Sponsor
+      pageRef: /become-a-sponsor
+      weight: 30
+    - name: Sponsors
+      pageRef: /sponsors
+      weight: 40
+    - name: PreCons
+      pageRef: /precons
+      weight: 50
+    - name: Schedule
+      pageRef: /schedule
+      weight: 60
+    - name: Speakers
+      pageRef: /speakers
+      weight: 70
+    - name: Past Events
+      pageRef: /archive
+      weight: 80
 
 taxonomies: {}
 

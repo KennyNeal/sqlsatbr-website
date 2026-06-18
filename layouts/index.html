@@ -22,13 +22,8 @@
       <div class="button-row">
         <a class="button" href="{{ .Params.registrationUrl }}">Register</a>
         {{ with site.GetPage "/schedule" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Schedule</a>{{ end }}
-        {{ with site.GetPage "/precons" }}<a class="button button-secondary" href="{{ .RelPermalink }}">PreCons</a>{{ end }}
         {{ with site.GetPage "/speakers" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Speakers</a>{{ end }}
         {{ with site.GetPage "/sponsors" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Sponsors</a>{{ end }}
-        {{ with site.GetPage "/become-a-volunteer" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Become a Volunteer</a>{{ end }}
-        {{ with site.GetPage "/become-a-sponsor" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Become a Sponsor</a>{{ end }}
-        {{ with site.GetPage "/invoice-request" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Invoice Request</a>{{ end }}
-        {{ with site.GetPage "/archive" }}<a class="button button-secondary" href="{{ .RelPermalink }}">Archive</a>{{ end }}
       </div>
       <div class="card card-subtle stack">
         <h3>What to expect</h3>

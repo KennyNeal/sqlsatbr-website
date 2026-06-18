@@ -23,12 +23,34 @@
         }
       })();
     </script>
+    <link rel="icon" href="{{ "DodBR2026.png" | relURL }}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato:wght@400;700&display=swap">
     <link rel="stylesheet" href="{{ "site.css" | relURL }}">
   </head>
   <body>
+    <header class="site-banner">
+      <div class="banner-inner">
+        <a class="brand" href="{{ "/" | relURL }}">
+          <img class="brand-logo" src="{{ "DodBR2026.png" | relURL }}" alt="Day of Data Baton Rouge logo" width="44" height="44">
+          <span>#DayOfDataBR</span>
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </label>
+        <nav class="site-nav" aria-label="Primary">
+          {{ $current := . }}
+          {{ range site.Menus.main }}
+            {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+            <a href="{{ .URL }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+          {{ end }}
+        </nav>
+      </div>
+    </header>
     <div class="page-shell{{ with .Layout }} page-shell-{{ . }}{{ end }}">
       <header class="site-header">
-        <p class="eyebrow">Publication PR tracer bullet</p>
         <h1>{{ site.Title }}</h1>
         <p class="tagline">{{ site.Params.tagline }}</p>
       </header>
@@ -36,5 +58,14 @@
         {{ block "main" . }}{{ end }}
       </main>
     </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>Day of Data Baton Rouge &mdash; hosted by the Baton Rouge User Groups.</p>
+        <p class="footer-links">
+          <a href="https://bsky.app/profile/sqlsatbr.com">Bluesky</a>
+          <a href="http://www.twitter.com/sqlsatbr">Twitter</a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
