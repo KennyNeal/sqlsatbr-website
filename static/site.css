@@ -313,6 +313,13 @@ body {
   background: var(--brand-navy-dark) !important;
 }
 
+/* Plenum/service rows (Keynote, Lunch, Check-In) show the room as a
+   white badge, so its label needs dark text, not white. */
+.schedule-embed .sz-session--service .sz-session__room,
+.schedule-embed .sz-session--plenum .sz-session__room {
+  color: var(--brand-navy) !important;
+}
+
 .schedule-embed .sz-tabs__item--active .sz-tabs__link {
   background: var(--brand-navy) !important;
   color: #ffffff !important;
