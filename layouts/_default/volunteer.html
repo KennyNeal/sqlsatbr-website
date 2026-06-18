@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h2>{{ .Title }}</h2>
+      {{ with .Params.intro }}<p class="page-header-lede">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  <section class="section">
+    <div class="section-inner narrow stack">
+      {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+      {{ with .Params.signupUrl }}
+        <div class="button-row">
+          <a class="button" href="{{ . }}">{{ $.Params.signupLabel | default "Sign up to Volunteer" }}</a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

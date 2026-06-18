@@ -1,18 +1,12 @@
 ---
 title: Become a Volunteer
-description: Volunteer signup information for Day of Data Baton Rouge 2026.
+description: Volunteer for Day of Data Baton Rouge 2026.
+layout: volunteer
+intro: Volunteers help keep Day of Data Baton Rouge welcoming, organized, and free for the community.
+signupUrl: https://www.signupgenius.com/go/4090C49AFAA2EA2FF2-64424761-dayofdata#/
+signupLabel: Sign up to Volunteer
 ---
 
-Volunteers help keep Day of Data Baton Rouge welcoming, organized, and free for the community. Phase one keeps the current volunteer signup flow in place for the 2026 Event Year.
+Day of Data Baton Rouge runs on volunteers. Whether you can help for an hour or the whole day, there are roles for everyone — greeting attendees, checking in registrants, helping speakers in rooms, setting up, and more.
 
-## Volunteer signup
-
-Use the current SignupGenius page to review open roles and sign up:
-
-- [Sign up to volunteer for Day of Data Baton Rouge 2026](https://www.signupgenius.com/go/4090C49AFAA2EA2FF2-64424761-dayofdata#/)
-
-## Related links
-
-- [Review prior Baton Rouge event history](https://sqlsaturday.com/tags/#Baton%20Rouge)
-- [Follow SQLSatBR on Twitter](http://www.twitter.com/sqlsatbr)
-- [Follow SQLSatBR on Bluesky](https://bsky.app/profile/sqlsatbr.com)
+Review the open roles and pick the spots that work for you on our SignupGenius page.
