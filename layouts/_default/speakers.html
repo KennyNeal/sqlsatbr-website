@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h2>{{ .Title }}</h2>
+      {{ with .Params.intro }}<p class="page-header-lede">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  <section class="section">
+    <div class="section-inner section-inner-full stack">
+      {{ with .Params.sessionizeId }}
+        <div class="speakers-embed">
+          <div id="sessionize-speakers"></div>
+          <script type="text/javascript" src="https://sessionize.com/api/v2/{{ . }}/view/Speakers"></script>
+          <noscript>
+            <p>The speaker list requires JavaScript. View the full lineup on
+              <a href="https://sessionize.com/api/v2/{{ . }}/view/Speakers">Sessionize</a>.</p>
+          </noscript>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

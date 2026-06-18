@@ -135,6 +135,10 @@ body {
   max-width: 44rem;
 }
 
+.section-inner.section-inner-full {
+  max-width: 96rem;
+}
+
 /* Section heading with top/bottom rules, matching the live site */
 .section-heading {
   margin: 0 0 1.5rem;
@@ -338,6 +342,24 @@ body {
 .schedule-embed .sz-cssgrid__track-label {
   color: var(--brand-navy) !important;
   font-weight: 700 !important;
+}
+
+/* Theme the Sessionize speaker wall to match the site */
+.speakers-embed {
+  margin-top: 0.5rem;
+}
+
+.speakers-embed .sz-speaker__name,
+.speakers-embed .sz-speaker__name a {
+  color: var(--brand-navy) !important;
+}
+
+.speakers-embed .sz-speaker__tagline {
+  color: var(--brand-navy) !important;
+}
+
+.speakers-embed .sz-speaker__sessions a {
+  color: var(--brand-navy) !important;
 }
 
 /* PreCon speaker + session cards */
