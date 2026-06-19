@@ -842,6 +842,10 @@ a {
   height: 7.75rem;
 }
 
+.sponsor-card-bronze {
+  height: 6.75rem;
+}
+
 .sponsor-card:hover {
   border-color: #9db2d3;
   box-shadow: 0 12px 24px rgba(18, 32, 51, 0.08);
