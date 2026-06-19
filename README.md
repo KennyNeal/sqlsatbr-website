@@ -2,6 +2,11 @@
 
 This repository hosts the rebuilt public website and Cloudflare Worker companion for Day of Data Baton Rouge.
 
+## Common tasks
+
+See the [site maintenance runbook](docs/runbook.md) for step-by-step guides to
+**adding a sponsor** and **starting a new event year**.
+
 ## Publication PR flow
 
 Public website changes are proposed through a **Publication PR** and published only after that pull request is merged.
