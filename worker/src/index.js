@@ -1,6 +1,7 @@
 const ALLOWED_ORIGINS = new Set([
   "https://www.dayofdatabr.org",
   "https://dayofdatabr.org",
+  "https://kennyneal.github.io",
   "http://localhost:1313",
 ]);
 
@@ -159,14 +160,20 @@ async function handleInvoiceRequest(request, env) {
     const accessToken = await getPayPalAccessToken(env);
     const invoice = await createPayPalInvoice(submission, packageAmount, accessToken, env);
     await sendPayPalInvoice(invoice.id, accessToken, env);
+    const payUrl = await getInvoicePayUrl(invoice.id, accessToken, env);
+
+    // Mirror the submission into the organizers' Google Sheet (best-effort).
+    await relayToGoogleForm(submission, packageAmount, env);
 
     return respondForRequest(
       request,
       {
         ok: true,
         invoiceId: invoice.id,
-        message:
-          "Thanks. Your PayPal invoice was created and sent, and an organizer will follow up if anything else is needed.",
+        payUrl,
+        message: payUrl
+          ? "Thanks! Your sponsorship invoice is ready. Pay it now with the button below, or use the link we just emailed you."
+          : "Thanks! Your sponsorship invoice was created and emailed to you — you can pay it online by card or PayPal.",
       },
       200,
     );
@@ -301,6 +308,71 @@ async function sendPayPalInvoice(invoiceId, accessToken, env) {
   );
 }
 
+async function getInvoicePayUrl(invoiceId, accessToken, env) {
+  // The recipient-facing, payable URL is exposed on the invoice after it is sent.
+  try {
+    const response = await fetch(`${payPalBaseUrl(env)}/v2/invoicing/invoices/${invoiceId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
+      },
+    });
+
+    const { body } = await readPayPalResponse(response);
+    if (response.ok && body && body.detail && body.detail.metadata) {
+      return normalizeText(body.detail.metadata.recipient_view_url);
+    }
+  } catch {
+    // Non-fatal: the invoice was still created and emailed.
+  }
+
+  return "";
+}
+
+async function relayToGoogleForm(submission, packageAmount, env) {
+  const responseUrl = normalizeText(env && env.GOOGLE_FORM_RESPONSE_URL);
+  const entryMapRaw = normalizeText(env && env.GOOGLE_FORM_ENTRY_MAP);
+  if (!responseUrl || !entryMapRaw) {
+    return;
+  }
+
+  try {
+    const entryMap = JSON.parse(entryMapRaw);
+    const values = {
+      organizationName: submission.organizationName,
+      primaryContactName: submission.primaryContactName,
+      contactEmail: submission.contactEmail,
+      contactPhone: submission.contactPhone,
+      sponsorPackage: submission.sponsorPackage,
+      packageAmount,
+      billingContactEmail: submission.billingContactEmail,
+      preferredPaymentMethod: submission.preferredPaymentMethod,
+      sponsorWebsite: submission.sponsorWebsite,
+      logoUrl: submission.logoUrl,
+      notes: submission.notes,
+    };
+
+    const form = new URLSearchParams();
+    for (const [field, entryId] of Object.entries(entryMap)) {
+      if (values[field] !== undefined && values[field] !== "") {
+        form.set(`entry.${entryId}`, String(values[field]));
+      }
+    }
+
+    if ([...form.keys()].length === 0) {
+      return;
+    }
+
+    await fetch(responseUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: form.toString(),
+    });
+  } catch {
+    // Best-effort: never block the invoice on the Sheet relay.
+  }
+}
+
 function validatePayPalConfig(env) {
   if (!env.PAYPAL_CLIENT_ID || !env.PAYPAL_CLIENT_SECRET) {
     return {
@@ -353,6 +425,8 @@ function normalizePayload(payload) {
     sponsorPackage: normalizeText(payload.sponsorPackage),
     billingContactEmail: normalizeEmail(payload.billingContactEmail),
     preferredPaymentMethod: normalizeText(payload.preferredPaymentMethod),
+    sponsorWebsite: normalizeText(payload.sponsorWebsite),
+    logoUrl: normalizeText(payload.logoUrl),
     notes: normalizeText(payload.notes),
     companyWebsite: normalizeText(payload.companyWebsite),
   };
@@ -368,6 +442,8 @@ function validateSubmission(submission) {
   if (!submission.sponsorPackage) errors.push("sponsorPackage");
   if (!looksLikeEmail(submission.billingContactEmail)) errors.push("billingContactEmail");
   if (!submission.preferredPaymentMethod) errors.push("preferredPaymentMethod");
+  if (!looksLikeUrl(submission.sponsorWebsite)) errors.push("sponsorWebsite");
+  if (submission.logoUrl && !looksLikeUrl(submission.logoUrl)) errors.push("logoUrl");
   if (submission.companyWebsite) errors.push("companyWebsite");
 
   return errors;
@@ -414,6 +490,14 @@ function buildInvoiceNote(submission) {
     `Preferred payment method: ${submission.preferredPaymentMethod}`,
   ];
 
+  if (submission.sponsorWebsite) {
+    lines.push(`Website: ${submission.sponsorWebsite}`);
+  }
+
+  if (submission.logoUrl) {
+    lines.push(`Logo URL: ${submission.logoUrl}`);
+  }
+
   if (submission.notes) {
     lines.push(`Notes: ${submission.notes}`);
   }
@@ -431,6 +515,10 @@ function normalizeEmail(value) {
 
 function looksLikeEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function looksLikeUrl(value) {
+  return /^https?:\/\/[^\s.]+\.[^\s]+$/i.test(normalizeText(value));
 }
 
 function respondForRequest(request, body, status) {

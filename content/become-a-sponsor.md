@@ -44,9 +44,10 @@ All sponsorships are **prepaid**. Pay by PayPal or credit card to sqlpassbr@gmai
 
 ## Ready to sponsor?
 
-Please contact us at [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com) with any questions. All sponsor and booth personnel are asked to follow our [Code of Conduct]({{< relref "/code-of-conduct.md" >}}).
+Sign up online and you'll get a sponsorship invoice you can **pay immediately by card or PayPal** — or pay later if your organization needs AP, ACH, or check processing.
 
-- [Submit sponsor interest for the 2026 Event Year](https://docs.google.com/forms/d/e/1FAIpQLSeYTQBlIC2UByJCf1vqn6JabDY0nz3ToNRKf6TCQ6YbxPIFsQ/viewform)
-- [Request an invoice for the 2026 Event Year]({{< relref "invoice-request.md" >}})
+{{< sponsor-pay >}}
+
+Just want to talk first? [Submit sponsor interest for the 2026 Event Year](https://docs.google.com/forms/d/e/1FAIpQLSeYTQBlIC2UByJCf1vqn6JabDY0nz3ToNRKf6TCQ6YbxPIFsQ/viewform) or email [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com). All sponsor and booth personnel are asked to follow our [Code of Conduct]({{< relref "/code-of-conduct.md" >}}).
 
 You can also review the current [Sponsor Listings]({{< relref "/events/dodbr-2026/sponsors.md" >}}) to see who is already supporting the 2026 Event Year.

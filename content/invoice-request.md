@@ -1,28 +1,20 @@
 ---
-title: Invoice Request
-description: Sponsor Intake guidance for sponsors who need Day of Data Baton Rouge invoicing instead of immediate checkout.
+title: Sponsor Sign-Up
+description: Sign up to sponsor Day of Data Baton Rouge 2026 and pay your invoice online — by card, PayPal, or AP/check.
 layout: invoice-request
 workerEndpoint: https://sqlsatbr-website.kneal30.workers.dev/api/invoice-request
 ---
 
-An **Invoice Request** is the right path when your organization needs an invoice for accounts payable, ACH, or check processing instead of paying immediately.
+Complete the form below to confirm your sponsorship. We'll generate a **PayPal invoice for your selected package** that you can **pay immediately by card or PayPal** — or pay later if your organization needs accounts payable, ACH, or check processing.
 
-## What to send
-
-Prepare this **Sponsor Intake** information before you start:
+## What you'll need
 
 1. Sponsor organization name
-2. Primary contact name
-3. Contact email address
-4. Contact phone number
-5. Requested Sponsor Package
-6. Billing contact or accounts payable email
-7. Preferred payment method such as ACH or check
-8. Any notes the organizers should know about billing or Sponsor Listing details
-
-## Submit your invoice request
-
-Use the form below to submit your **Sponsor Intake** for the 2026 Event Year. After submission, an organizer can follow up on billing details and the public Sponsor Listing for the Event Year.
+2. Primary contact name, email, and phone
+3. Requested Sponsor Package
+4. Billing / accounts payable email
+5. Preferred payment method
+6. Your website and a link to your logo (for the Sponsor Listing)
 
 ## Before you submit
 

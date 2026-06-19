@@ -55,6 +55,14 @@
             <option>Other</option>
           </select>
         </label>
+        <label class="field stack-tight" for="sponsorWebsite">
+          <span>Your website (for the Sponsor Listing)</span>
+          <input id="sponsorWebsite" name="sponsorWebsite" type="url" placeholder="https://example.com" required>
+        </label>
+        <label class="field stack-tight" for="logoUrl">
+          <span>Link to your logo</span>
+          <input id="logoUrl" name="logoUrl" type="url" placeholder="https://example.com/logo.png">
+        </label>
         <label class="field stack-tight field-hidden" for="companyWebsite">
           <span>Company website</span>
           <input id="companyWebsite" name="companyWebsite" type="text" tabindex="-1" autocomplete="off">
@@ -65,14 +73,19 @@
         <textarea id="notes" name="notes" rows="5" placeholder="Share billing notes, package questions, or Sponsor Listing details."></textarea>
       </label>
       <div class="stack stack-tight">
-        <button class="button" type="submit">Submit invoice request</button>
+        <button class="button" type="submit">Submit &amp; get invoice</button>
         <p class="lede intake-status" data-intake-status hidden></p>
+        <p class="button-row" data-intake-pay hidden>
+          <a class="button" data-intake-pay-link href="#" target="_blank" rel="noopener">Pay your invoice now</a>
+        </p>
       </div>
     </form>
     <script>
       (function () {
         var form = document.querySelector(".intake-form");
         var status = document.querySelector("[data-intake-status]");
+        var payWrap = document.querySelector("[data-intake-pay]");
+        var payLink = document.querySelector("[data-intake-pay-link]");
 
         if (!form || !status) {
           return;
@@ -83,6 +96,9 @@
 
           status.hidden = true;
           status.textContent = "";
+          if (payWrap) {
+            payWrap.hidden = true;
+          }
 
           var submitter = form.querySelector("button[type='submit']");
           if (submitter) {
@@ -117,6 +133,11 @@
             status.classList.remove("intake-status-error");
             status.classList.add("intake-status-success");
             status.hidden = false;
+
+            if (body.payUrl && payWrap && payLink) {
+              payLink.href = body.payUrl;
+              payWrap.hidden = false;
+            }
           } catch (error) {
             status.textContent = error.message || "Invoice request submission failed.";
             status.classList.remove("intake-status-success");
