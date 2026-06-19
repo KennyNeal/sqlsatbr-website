@@ -71,3 +71,9 @@ groups:
       - name: Sparkhound
         url: https://sparkhound.com/
         logo: sponsors/dodbr-2026/sparkhound.png
+  - title: Bronze Sponsors
+    tier: bronze
+    sponsors:
+      - name: 180 Pros
+        url: https://180pros.com/
+        logo: sponsors/dodbr-2026/180Pros.jpg
