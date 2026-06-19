@@ -9,9 +9,16 @@
     <div class="section-inner stack">
       {{ if .Content }}<div class="prose">{{ .Content }}</div>{{ end }}
 
-      {{/* Finished events from the events section, newest first. */}}
+      {{/* Finished events from the events section, newest first — excluding the
+           event currently featured on the home (so a finished event isn't archived
+           while it's still the most recent one with nothing upcoming to replace it). */}}
       {{ $today := now.Format "2006-01-02" }}
-      {{ $pastEvents := sort (where (site.GetPage "/events").Sections "Params.startdate" "lt" $today) "Params.startdate" "desc" }}
+      {{ $featuredPath := "" }}
+      {{ with partial "featured-event.html" . }}{{ $featuredPath = .RelPermalink }}{{ end }}
+      {{ $pastEvents := slice }}
+      {{ range sort (where (site.GetPage "/events").Sections "Params.startdate" "lt" $today) "Params.startdate" "desc" }}
+        {{ if ne .RelPermalink $featuredPath }}{{ $pastEvents = $pastEvents | append . }}{{ end }}
+      {{ end }}
       {{ with $pastEvents }}
         <div class="event-grid">
           {{ range . }}{{ partial "event-card.html" . }}{{ end }}

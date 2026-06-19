@@ -210,7 +210,10 @@ so you can see this in action.
   recent past one) via `layouts/partials/featured-event.html`, and inherits that event's
   theme. **No manual archiving is needed:** once an event's `startDate` passes, it leaves
   the home/upcoming automatically and appears on the **Past Events** page (which lists
-  finished events from `content/events/` above the legacy `content/archive/` entries). *Note for editors of those templates:* `startDate` is read as an ISO
+  finished events from `content/events/` above the legacy `content/archive/` entries).
+  The one exception: if there's **no upcoming event**, the most recent event stays
+  featured on the home and is **not** moved to Past Events until a newer event supersedes
+  it — so the home is never left blank. *Note for editors of those templates:* `startDate` is read as an ISO
   string and compared against `now.Format "2006-01-02"`, and Hugo lowercases param keys —
   so the queries use `"Params.startdate"` (all lowercase).
 - **Per-event pages** (`layouts/_default/schedule.html`, `speakers.html`, `precons.html`,
