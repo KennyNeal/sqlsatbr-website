@@ -165,7 +165,9 @@ params:
   secondaryColor: "#e8a33d"  # accent (hero date, the Register pill on event pages)
 ```
 
-This theme is used on the home page and other site-level pages.
+This theme is used on site-level pages. **The home page automatically inherits the
+featured (soonest upcoming) event's theme**, so once an event becomes the next one up,
+the home recolors to its palette and logo without any manual change.
 
 ### Per-event override
 
@@ -204,7 +206,11 @@ so you can see this in action.
   events can be full or lightweight without template changes.
 - **Home & Events listing** (`layouts/index.html`, `layouts/events/list.html`) read the
   event sections, split them into upcoming/past by comparing `startDate` to today, and
-  sort by date. *Note for editors of those templates:* `startDate` is read as an ISO
+  sort by date. The home features the soonest upcoming event (falling back to the most
+  recent past one) via `layouts/partials/featured-event.html`, and inherits that event's
+  theme. **No manual archiving is needed:** once an event's `startDate` passes, it leaves
+  the home/upcoming automatically and appears on the **Past Events** page (which lists
+  finished events from `content/events/` above the legacy `content/archive/` entries). *Note for editors of those templates:* `startDate` is read as an ISO
   string and compared against `now.Format "2006-01-02"`, and Hugo lowercases param keys —
   so the queries use `"Params.startdate"` (all lowercase).
 - **Per-event pages** (`layouts/_default/schedule.html`, `speakers.html`, `precons.html`,

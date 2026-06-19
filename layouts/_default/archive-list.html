@@ -8,16 +8,30 @@
   <section class="section">
     <div class="section-inner stack">
       {{ if .Content }}<div class="prose">{{ .Content }}</div>{{ end }}
-      <div class="archive-grid">
-        {{ range .Pages.ByTitle.Reverse }}
-          <article class="archive-card stack stack-tight">
-            {{ with .Params.dateLabel }}<p class="eyebrow">{{ . }}</p>{{ end }}
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
-            {{ with .Params.legacyName }}<p><strong>Legacy event name:</strong> {{ . }}</p>{{ end }}
-          </article>
-        {{ end }}
-      </div>
+
+      {{/* Finished events from the events section, newest first. */}}
+      {{ $today := now.Format "2006-01-02" }}
+      {{ $pastEvents := sort (where (site.GetPage "/events").Sections "Params.startdate" "lt" $today) "Params.startdate" "desc" }}
+      {{ with $pastEvents }}
+        <div class="event-grid">
+          {{ range . }}{{ partial "event-card.html" . }}{{ end }}
+        </div>
+      {{ end }}
+
+      {{/* Earlier events recorded as archive entries. */}}
+      {{ with .Pages.ByTitle.Reverse }}
+        {{ if $pastEvents }}<h2 class="section-heading">Earlier events</h2>{{ end }}
+        <div class="archive-grid">
+          {{ range . }}
+            <article class="archive-card stack stack-tight">
+              {{ with .Params.dateLabel }}<p class="eyebrow">{{ . }}</p>{{ end }}
+              <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+              {{ with .Params.legacyName }}<p><strong>Legacy event name:</strong> {{ . }}</p>{{ end }}
+            </article>
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
   </section>
 {{ end }}
