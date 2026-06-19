@@ -1,7 +1,11 @@
 :root {
   color-scheme: light;
-  --brand-navy: #013169;
-  --brand-navy-dark: #011c3c;
+  /* Theme colors — overridable per page via an inline :root block injected
+     from site/event params (see layouts/_default/baseof.html). */
+  --brand-primary: #013169;
+  --brand-secondary: #e8a33d;
+  /* Darker shade of the primary, derived automatically for gradients/footer. */
+  --brand-primary-dark: color-mix(in srgb, var(--brand-primary) 62%, #000);
   --brand-text: #212121;
   --brand-muted: #5f6f86;
   --brand-bg: #ffffff;
@@ -19,7 +23,7 @@ body {
 
 /* Site banner + navigation */
 .site-banner {
-  background: var(--brand-navy);
+  background: var(--brand-primary);
   color: #ffffff;
 }
 
@@ -76,7 +80,7 @@ body {
 
 .site-nav a.active {
   background: #ffffff;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .nav-toggle,
@@ -154,7 +158,7 @@ body {
 
 /* Hero */
 .hero {
-  background: linear-gradient(160deg, var(--brand-navy) 0%, var(--brand-navy-dark) 100%);
+  background: linear-gradient(160deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
   color: #ffffff;
   padding: 4rem 1.5rem;
   text-align: center;
@@ -182,7 +186,7 @@ body {
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--brand-secondary);
 }
 
 .hero-title {
@@ -205,7 +209,7 @@ body {
 
 .button-hero {
   background: #ffffff;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
   border: 2px solid #ffffff;
 }
 
@@ -225,7 +229,7 @@ body {
 
 /* Interior page header band */
 .page-header {
-  background: linear-gradient(160deg, var(--brand-navy) 0%, var(--brand-navy-dark) 100%);
+  background: linear-gradient(160deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
   color: #ffffff;
   padding: 2.75rem 1.5rem;
 }
@@ -262,7 +266,7 @@ body {
 .venue-card {
   padding: 1.5rem;
   border: 1px solid var(--brand-border);
-  border-left: 5px solid var(--brand-navy);
+  border-left: 5px solid var(--brand-primary);
   border-radius: 0.5rem;
   background: #ffffff;
 }
@@ -278,7 +282,7 @@ body {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .lede-prose {
@@ -287,7 +291,7 @@ body {
 
 /* Event sub-navigation (per-event page bar) */
 .event-subnav {
-  background: var(--brand-navy-dark);
+  background: var(--brand-primary-dark);
 }
 
 .event-subnav-inner {
@@ -329,8 +333,8 @@ body {
 }
 
 .event-subnav-links a.event-subnav-register {
-  background: #ffffff;
-  color: var(--brand-navy);
+  background: var(--brand-secondary);
+  color: #1f1f1f;
 }
 
 /* Event listing cards */
@@ -344,7 +348,7 @@ body {
   display: block;
   padding: 1.5rem;
   border: 1px solid var(--brand-border);
-  border-left: 5px solid var(--brand-navy);
+  border-left: 5px solid var(--brand-primary);
   border-radius: 0.5rem;
   background: #ffffff;
   color: inherit;
@@ -365,7 +369,7 @@ body {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .event-card-venue {
@@ -375,7 +379,7 @@ body {
 
 .event-card-link {
   font-weight: 700;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 /* Sessionize schedule embed */
@@ -388,7 +392,7 @@ body {
    Sessionize injects its own stylesheet after ours, so these
    overrides use !important to win on equal specificity. */
 .schedule-embed .sz-session__card {
-  background: var(--brand-navy) !important;
+  background: var(--brand-primary) !important;
   color: #ffffff !important;
   border-radius: 0.5rem !important;
 }
@@ -407,33 +411,33 @@ body {
 
 .schedule-embed .sz-session--service .sz-session__card,
 .schedule-embed .sz-session--plenum .sz-session__card {
-  background: var(--brand-navy-dark) !important;
+  background: var(--brand-primary-dark) !important;
 }
 
 /* Plenum/service rows (Keynote, Lunch, Check-In) show the room as a
    white badge, so its label needs dark text, not white. */
 .schedule-embed .sz-session--service .sz-session__room,
 .schedule-embed .sz-session--plenum .sz-session__room {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
 }
 
 .schedule-embed .sz-tabs__item--active .sz-tabs__link {
-  background: var(--brand-navy) !important;
+  background: var(--brand-primary) !important;
   color: #ffffff !important;
-  border-color: var(--brand-navy) !important;
+  border-color: var(--brand-primary) !important;
 }
 
 .schedule-embed .sz-tabs__link {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
 }
 
 .schedule-embed .sz-tabs__link:hover {
-  background: rgba(1, 49, 105, 0.08) !important;
+  background: color-mix(in srgb, var(--brand-primary) 8%, transparent) !important;
 }
 
 .schedule-embed .sz-room,
 .schedule-embed .sz-cssgrid__track-label {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
   font-weight: 700 !important;
 }
 
@@ -444,15 +448,15 @@ body {
 
 .speakers-embed .sz-speaker__name,
 .speakers-embed .sz-speaker__name a {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
 }
 
 .speakers-embed .sz-speaker__tagline {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
 }
 
 .speakers-embed .sz-speaker__sessions a {
-  color: var(--brand-navy) !important;
+  color: var(--brand-primary) !important;
 }
 
 /* PreCon speaker + session cards */
@@ -488,7 +492,7 @@ body {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .precon-speaker {
@@ -504,7 +508,7 @@ body {
 .precon-detail {
   padding: 1.25rem;
   border: 1px solid var(--brand-border);
-  border-top: 4px solid var(--brand-navy);
+  border-top: 4px solid var(--brand-primary);
   border-radius: 0.5rem;
   background: #ffffff;
 }
@@ -513,7 +517,7 @@ body {
   margin: 0;
   font-family: "Arvo", Georgia, serif;
   font-size: 1.05rem;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .eyebrow {
@@ -522,7 +526,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 h1,
@@ -530,16 +534,16 @@ h2,
 h3 {
   font-family: "Arvo", Georgia, serif;
   line-height: 1.2;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 a {
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 /* Site footer */
 .site-footer {
-  background: var(--brand-navy-dark);
+  background: var(--brand-primary-dark);
   color: rgba(255, 255, 255, 0.85);
   margin-top: 3rem;
 }
@@ -618,19 +622,19 @@ a {
   display: inline-block;
   padding: 0.75rem 1rem;
   border-radius: 999px;
-  background: var(--brand-navy);
+  background: var(--brand-primary);
   color: #ffffff;
   font-weight: 700;
   text-decoration: none;
 }
 
 .button:hover {
-  background: var(--brand-navy-dark);
+  background: var(--brand-primary-dark);
 }
 
 .button-secondary {
   background: #e8eef8;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 .button-secondary:hover {
@@ -675,7 +679,7 @@ a {
 
 .prose th {
   background: #f8fbff;
-  color: var(--brand-navy);
+  color: var(--brand-primary);
 }
 
 /* Sponsorship benefit matrix: centered Yes/No cells, navy header column */

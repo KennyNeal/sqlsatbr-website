@@ -15,7 +15,7 @@
   {{ with $featured }}
     <section class="hero">
       <div class="hero-inner stack">
-        <img class="hero-logo" src="{{ "DodBR2026.png" | relURL }}" alt="Day of Data Baton Rouge logo" width="120" height="120">
+        <img class="hero-logo" src="{{ (.Params.logo | default site.Params.logo) | relURL }}" alt="{{ .Title }} logo" width="120" height="120">
         {{ with .Params.dateRange }}<p class="hero-date">{{ . }}</p>{{ end }}
         <h2 class="hero-title">{{ .Title }}</h2>
         {{ with .Params.intro }}<p class="hero-tagline">{{ . }}</p>{{ end }}

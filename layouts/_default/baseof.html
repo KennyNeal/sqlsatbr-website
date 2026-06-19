@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{- /* Active theme: site defaults, overridden by the current event. */ -}}
+    {{- $logo := site.Params.logo -}}
+    {{- $primary := site.Params.primaryColor -}}
+    {{- $secondary := site.Params.secondaryColor -}}
+    {{- if eq .Section "events" -}}
+      {{- $ev := .CurrentSection -}}
+      {{- with $ev.Params.logo }}{{ $logo = . }}{{ end -}}
+      {{- with $ev.Params.primaryColor }}{{ $primary = . }}{{ end -}}
+      {{- with $ev.Params.secondaryColor }}{{ $secondary = . }}{{ end -}}
+    {{- end -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
@@ -23,17 +33,18 @@
         }
       })();
     </script>
-    <link rel="icon" href="{{ "DodBR2026.png" | relURL }}" type="image/png">
+    <link rel="icon" href="{{ $logo | relURL }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato:wght@400;700&display=swap">
     <link rel="stylesheet" href="{{ "site.css" | relURL }}">
+    <style>:root{ {{ with $primary }}--brand-primary: {{ . }};{{ end }} {{ with $secondary }}--brand-secondary: {{ . }};{{ end }} }</style>
   </head>
   <body>
     <header class="site-banner">
       <div class="banner-inner">
         <a class="brand" href="{{ "/" | relURL }}">
-          <img class="brand-logo" src="{{ "DodBR2026.png" | relURL }}" alt="Day of Data Baton Rouge logo" width="44" height="44">
+          <img class="brand-logo" src="{{ $logo | relURL }}" alt="Day of Data Baton Rouge logo" width="44" height="44">
           <span>#DayOfDataBR</span>
         </a>
         <input type="checkbox" id="nav-toggle" class="nav-toggle">

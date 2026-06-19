@@ -4,7 +4,8 @@ Practical, step-by-step guides for the common jobs:
 
 1. [Add a sponsor to an event](#1-add-a-sponsor-to-an-event)
 2. [Add a new event](#2-add-a-new-event)
-3. [How the event model works](#3-how-the-event-model-works)
+3. [Control theming (logo + colors)](#3-control-theming-logo--colors)
+4. [How the event model works](#4-how-the-event-model-works)
 
 Everything publishes through the **Publication PR flow**: make changes on a branch,
 open a pull request, and the site deploys to GitHub Pages automatically after the PR is
@@ -148,7 +149,54 @@ the event's pages, then open a Publication PR and merge.
 
 ---
 
-## 3. How the event model works
+## 3. Control theming (logo + colors)
+
+The logo and brand colors are **data**, not hard-coded. There's a site-wide default,
+and any event can override it with its own logo and primary/secondary colors.
+
+### Site-wide default
+
+In `hugo.yaml` under `params`:
+
+```yaml
+params:
+  logo: DodBR2026.png        # file in static/
+  primaryColor: "#013169"    # dominant brand color (banner, buttons, headings, links)
+  secondaryColor: "#e8a33d"  # accent (hero date, the Register pill on event pages)
+```
+
+This theme is used on the home page and other site-level pages.
+
+### Per-event override
+
+Add any of these to an event's `content/events/<slug>/_index.md` front matter:
+
+```yaml
+logo: spring-2027-logo.png   # file in static/ (omit ⇒ use site logo)
+primaryColor: "#2e7d32"
+secondaryColor: "#f4b400"
+```
+
+When you view that event's pages, the banner, hero, footer, sub-nav, buttons, and the
+Sessionize embeds all recolor to the event's palette, and the logo swaps. Omit any field
+to fall back to the site default. The spring-2027 scaffold has a placeholder green palette
+so you can see this in action.
+
+### How it works (for editors)
+
+- `layouts/_default/baseof.html` resolves the active theme (site defaults, overridden by
+  the current event) and injects an inline `:root { --brand-primary; --brand-secondary }`
+  block plus the active logo.
+- `static/site.css` consumes `--brand-primary` and `--brand-secondary`. The darker shade
+  used for gradients/footer (`--brand-primary-dark`) is derived automatically from the
+  primary with `color-mix`, so you only ever set two colors.
+- Pick a **primary** with enough contrast for white text (it backs the banner and
+  buttons), and a **secondary** that reads on a dark background (it's used for the hero
+  date and the Register pill).
+
+---
+
+## 4. How the event model works
 
 - **An event is a content section** at `content/events/<slug>/` with `_index.md`
   (`layout: event`). Its front matter holds all event-specific values.
