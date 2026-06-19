@@ -2,5 +2,9 @@ public/
 resources/_gen/
 .hugo_build.lock
 .wrangler/
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
 .claude/settings.local.json
 .claude/launch.json
