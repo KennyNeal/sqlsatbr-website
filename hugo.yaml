@@ -18,12 +18,9 @@ menu:
     - name: Events
       pageRef: /events
       weight: 20
-    - name: Become a Sponsor
-      pageRef: /become-a-sponsor
-      weight: 30
     - name: Past Events
       pageRef: /archive
-      weight: 40
+      weight: 30
 
 taxonomies: {}
 
