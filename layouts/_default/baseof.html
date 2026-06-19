@@ -5,11 +5,13 @@
     {{- $logo := site.Params.logo -}}
     {{- $primary := site.Params.primaryColor -}}
     {{- $secondary := site.Params.secondaryColor -}}
-    {{- if eq .Section "events" -}}
-      {{- $ev := .CurrentSection -}}
-      {{- with $ev.Params.logo }}{{ $logo = . }}{{ end -}}
-      {{- with $ev.Params.primaryColor }}{{ $primary = . }}{{ end -}}
-      {{- with $ev.Params.secondaryColor }}{{ $secondary = . }}{{ end -}}
+    {{- $themeEvent := "" -}}
+    {{- if eq .Section "events" -}}{{- $themeEvent = .CurrentSection -}}{{- end -}}
+    {{- if .IsHome -}}{{- $themeEvent = partial "featured-event.html" . -}}{{- end -}}
+    {{- with $themeEvent -}}
+      {{- with .Params.logo }}{{ $logo = . }}{{ end -}}
+      {{- with .Params.primaryColor }}{{ $primary = . }}{{ end -}}
+      {{- with .Params.secondaryColor }}{{ $secondary = . }}{{ end -}}
     {{- end -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

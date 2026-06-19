@@ -2,14 +2,10 @@
   {{ $events := (site.GetPage "/events").Sections }}
   {{ $today := now.Format "2006-01-02" }}
   {{ $upcoming := sort (where $events "Params.startdate" "ge" $today) "Params.startdate" "asc" }}
-  {{ $past := sort (where $events "Params.startdate" "lt" $today) "Params.startdate" "desc" }}
-  {{ $featured := "" }}
+  {{ $featured := partial "featured-event.html" . }}
   {{ $rest := slice }}
   {{ if $upcoming }}
-    {{ $featured = index $upcoming 0 }}
     {{ $rest = after 1 $upcoming }}
-  {{ else if $past }}
-    {{ $featured = index $past 0 }}
   {{ end }}
 
   {{ with $featured }}

@@ -1,0 +1,13 @@
+{{/* Returns the event to feature: the soonest upcoming event, or — if none are
+     upcoming — the most recent past event. Returns "" if there are no events. */}}
+{{ $today := now.Format "2006-01-02" }}
+{{ $events := (site.GetPage "/events").Sections }}
+{{ $upcoming := sort (where $events "Params.startdate" "ge" $today) "Params.startdate" "asc" }}
+{{ $result := "" }}
+{{ if $upcoming }}
+  {{ $result = index $upcoming 0 }}
+{{ else }}
+  {{ $past := sort (where $events "Params.startdate" "lt" $today) "Params.startdate" "desc" }}
+  {{ if $past }}{{ $result = index $past 0 }}{{ end }}
+{{ end }}
+{{ return $result }}
