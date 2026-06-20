@@ -26,8 +26,12 @@ on:
         description: 'Sponsor website URL (leave blank to omit)'
         required: false
         type: string
+      logo_url:
+        description: 'URL to fetch the logo from — workflow downloads it and names the file from the sponsor name'
+        required: false
+        type: string
       logo_path:
-        description: 'Logo path relative to static/ (e.g. sponsorlogos/acme.png — commit the file to static/sponsorlogos/ first)'
+        description: 'Logo filename in static/sponsorlogos/ (e.g. acme.png) — skipped if Logo URL is provided'
         required: false
         type: string
       logo_fit:
@@ -57,17 +61,19 @@ jobs:
           TIER: ${{ inputs.tier }}
           SPONSOR_NAME: ${{ inputs.sponsor_name }}
           SPONSOR_URL: ${{ inputs.sponsor_url }}
+          LOGO_URL: ${{ inputs.logo_url }}
           LOGO_PATH: ${{ inputs.logo_path }}
           LOGO_FIT: ${{ inputs.logo_fit }}
         run: |
           python3 << 'PYEOF'
-          import os, sys
+          import os, sys, re, urllib.request, urllib.error
           import yaml
 
           event_slug = os.environ['EVENT_SLUG'].strip()
           tier       = os.environ['TIER'].strip()
           name       = os.environ['SPONSOR_NAME'].strip()
           url        = os.environ.get('SPONSOR_URL', '').strip()
+          logo_url   = os.environ.get('LOGO_URL', '').strip()
           logo       = os.environ.get('LOGO_PATH', '').strip()
           logo_fit   = os.environ.get('LOGO_FIT', 'standard').strip()
 
@@ -85,6 +91,27 @@ jobs:
                     file=sys.stderr)
               sys.exit(1)
 
+          # ── Logo resolution ────────────────────────────────────────────────
+          def name_to_slug(s):
+              return re.sub(r'-{2,}', '-', re.sub(r'[^a-z0-9]', '-', s.lower())).strip('-')
+
+          if logo_url:
+              ext = os.path.splitext(logo_url.split('?')[0])[-1].lstrip('.')
+              if not ext:
+                  ext = 'png'
+              filename  = f'{name_to_slug(name)}.{ext}'
+              logo_dest = f'static/sponsorlogos/{filename}'
+              try:
+                  urllib.request.urlretrieve(logo_url, logo_dest)
+                  print(f'Downloaded logo to {logo_dest}')
+              except urllib.error.URLError as e:
+                  print(f'ERROR: Could not download logo from {logo_url}: {e}', file=sys.stderr)
+                  sys.exit(1)
+              logo = f'sponsorlogos/{filename}'
+          elif logo and '/' not in logo:
+              logo = f'sponsorlogos/{logo}'
+
+          # ── sponsors.yaml update ───────────────────────────────────────────
           with open(yaml_path) as fh:
               data = yaml.safe_load(fh)
 
@@ -130,7 +157,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add "content/events/${EVENT_SLUG}/sponsors.yaml"
+          git add "content/events/${EVENT_SLUG}/sponsors.yaml" static/sponsorlogos/
           git commit -m "Add ${SPONSOR_NAME} as ${TIER} sponsor for ${EVENT_SLUG}"
           git push origin "$branch"
 
@@ -148,7 +175,7 @@ jobs:
 
           **Review checklist before merging:**
           - [ ] Sponsor name and tier are correct
-          - [ ] Logo file exists at the path specified (under \`static/sponsorlogos/\` for returning sponsors, or event-scoped if one-time)
+          - [ ] Logo looks correct (check \`static/sponsorlogos/\` if it was downloaded or manually added)
           - [ ] Website URL is correct and publicly accessible
           - [ ] Sponsor has paid or payment is confirmed
 
