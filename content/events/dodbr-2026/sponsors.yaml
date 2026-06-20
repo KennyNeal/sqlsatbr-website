@@ -1,79 +1,82 @@
 groups:
-  - title: Global Sponsor
-    tier: global
-    sponsors:
-      - name: Microsoft/AMD
-        url: https://aka.ms/AMD_EPYC_RelationalDB
-        logo: sponsorlogos/ms-amd.png
-        logoFit: extra-wide
-  - title: Platinum Sponsors
-    tier: platinum
-    sponsors:
-      - name: CGI
-        url: https://www.cgi.com/en
-        logo: sponsorlogos/cgi.png
-      - name: Envoc
-        url: https://envoc.com/
-        logo: sponsorlogos/envoc.jpg
-      - name: Excella
-        url: https://www.excella.com/
-        logo: sponsorlogos/excella.jpg
-      - name: Red Gate
-        url: https://www.red-gate.com/
-        logo: sponsorlogos/red-gate.svg
-  - title: Facility Sponsor
-    tier: facility
-    sponsors:
-      - name: Louisiana State University
-        url: https://www.lsu.edu/business/sdeis/index.php
-        logo: sponsorlogos/lsu-sdeis-logo.png
-  - title: Gold Sponsors
-    tier: gold
-    sponsors:
-      - name: Louisiana Blue
-        url: https://www.lablue.com/
-        logo: sponsorlogos/bcbsla.jpg
-      - name: DBADuck
-        url: http://www.dbaduck.com/
-        logo: sponsorlogos/dbaduck.png
-      - name: EisnerAmper
-        url: https://www.eisneramper.com/
-        logo: sponsorlogos/eisneramper.jpg
-        logoFit: extra-wide
-      - name: ISACA Baton Rouge
-        url: https://engage.isaca.org/batonrougechapter/home
-        logo: sponsorlogos/isaca-baton-rouge.jpg
-      - name: MMR
-        url: https://mmrgrp.com/
-        logo: sponsorlogos/mmr.svg
-      - name: Pathfinder Data Strategy
-        url: https://www.pathfinderdatastrategy.com/
-        logo: sponsorlogos/pathfinder.png
-      - name: ServiceNow
-        url: https://www.servicenow.com/
-        logo: sponsorlogos/servicenow.png
-      - name: TekChix
-        url: https://thetekchix.com/
-        logo: sponsorlogos/tekchix.png
-  - title: Silver Sponsors
-    tier: silver
-    sponsors:
-      - name: ISC2
-        url: http://isc2-cgcchapter.org/
-        logo: sponsorlogos/isc2.png
-      - name: Louisiana Technology Industry Association
-        url: https://www.techinla.net/
-        logo: sponsorlogos/ltia.png
-        logoFit: extra-wide
-      - name: The Personnel Consulting Group
-        url: http://www.pcgrecruit.com/
-        logo: sponsorlogos/pcg.png
-      - name: Sparkhound
-        url: https://sparkhound.com/
-        logo: sponsorlogos/sparkhound.png
-  - title: Bronze Sponsors
-    tier: bronze
-    sponsors:
-      - name: 180 Pros
-        url: https://180pros.com/
-        logo: sponsorlogos/180Pros.jpg
+- title: Global Sponsor
+  tier: global
+  sponsors:
+  - name: Microsoft/AMD
+    url: https://aka.ms/AMD_EPYC_RelationalDB
+    logo: sponsorlogos/ms-amd.png
+    logoFit: extra-wide
+- title: Platinum Sponsors
+  tier: platinum
+  sponsors:
+  - name: CGI
+    url: https://www.cgi.com/en
+    logo: sponsorlogos/cgi.png
+  - name: Envoc
+    url: https://envoc.com/
+    logo: sponsorlogos/envoc.jpg
+  - name: Excella
+    url: https://www.excella.com/
+    logo: sponsorlogos/excella.jpg
+  - name: Red Gate
+    url: https://www.red-gate.com/
+    logo: sponsorlogos/red-gate.svg
+- title: Facility Sponsor
+  tier: facility
+  sponsors:
+  - name: Louisiana State University
+    url: https://www.lsu.edu/business/sdeis/index.php
+    logo: sponsorlogos/lsu-sdeis-logo.png
+- title: Gold Sponsors
+  tier: gold
+  sponsors:
+  - name: Louisiana Blue
+    url: https://www.lablue.com/
+    logo: sponsorlogos/bcbsla.jpg
+  - name: DBADuck
+    url: http://www.dbaduck.com/
+    logo: sponsorlogos/dbaduck.png
+  - name: EisnerAmper
+    url: https://www.eisneramper.com/
+    logo: sponsorlogos/eisneramper.jpg
+    logoFit: extra-wide
+  - name: ISACA Baton Rouge
+    url: https://engage.isaca.org/batonrougechapter/home
+    logo: sponsorlogos/isaca-baton-rouge.jpg
+  - name: MMR
+    url: https://mmrgrp.com/
+    logo: sponsorlogos/mmr.svg
+  - name: Pathfinder Data Strategy
+    url: https://www.pathfinderdatastrategy.com/
+    logo: sponsorlogos/pathfinder.png
+  - name: ServiceNow
+    url: https://www.servicenow.com/
+    logo: sponsorlogos/servicenow.png
+  - name: TekChix
+    url: https://thetekchix.com/
+    logo: sponsorlogos/tekchix.png
+- title: Silver Sponsors
+  tier: silver
+  sponsors:
+  - name: ISC2
+    url: http://isc2-cgcchapter.org/
+    logo: sponsorlogos/isc2.png
+  - name: Louisiana Technology Industry Association
+    url: https://www.techinla.net/
+    logo: sponsorlogos/ltia.png
+    logoFit: extra-wide
+  - name: The Personnel Consulting Group
+    url: http://www.pcgrecruit.com/
+    logo: sponsorlogos/pcg.png
+  - name: Sparkhound
+    url: https://sparkhound.com/
+    logo: sponsorlogos/sparkhound.png
+  - name: Forward Data Consultants
+    url: https://moveforward.co/
+    logo: Forward-Data-Consultants.png
+- title: Bronze Sponsors
+  tier: bronze
+  sponsors:
+  - name: 180 Pros
+    url: https://180pros.com/
+    logo: sponsorlogos/180Pros.jpg
