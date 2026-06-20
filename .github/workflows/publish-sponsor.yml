@@ -118,7 +118,8 @@ jobs:
             | sed 's/[^a-z0-9]/-/g' \
             | sed 's/-\{2,\}/-/g' \
             | sed 's/^-\|-$//g')
-          branch="sponsor/${EVENT_SLUG}-${slug}"
+          ts=$(date +%Y%m%d%H%M%S)
+          branch="sponsor/${EVENT_SLUG}-${slug}-${ts}"
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
