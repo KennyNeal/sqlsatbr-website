@@ -1,6 +1,7 @@
 {{ define "main" }}
   {{ $event := .Parent }}
-  {{ $eventYearSponsors := index hugo.Data.sponsors $event.Params.sponsorsKey }}
+  {{ $eventYearSponsors := "" }}
+  {{ with $event.Resources.Get "sponsors.yaml" }}{{ $eventYearSponsors = . | transform.Unmarshal }}{{ end }}
   <header class="page-header">
     <div class="page-header-inner">
       <h2>{{ .Title }}</h2>

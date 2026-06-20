@@ -14,9 +14,7 @@ secondaryColor: "#f4b400"
 #   registrationUrl: https://…        # adds the Register button
 #   eventVenueName / eventVenueAddress # adds the "When & where" section
 #   sessionizeId: …                    # then add schedule.md / speakers.md
-#   sponsorsKey: spring-2027           # then add sponsors.md + data/sponsors/spring-2027.yaml
 #   volunteerUrl: https://…            # adds the Volunteer link
-#   preconsKey: spring-2027            # then add data/precons/spring-2027.yaml and precons.md
 ---
 
 We're planning a spring **Day of Data Baton Rouge** for 2027. Venue, registration, schedule, and speakers will be announced here as they're confirmed.

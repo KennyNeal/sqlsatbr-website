@@ -1,6 +1,7 @@
 {{ define "main" }}
   {{ $event := .Parent }}
-  {{ $preconsData := index hugo.Data.precons $event.Params.preconsKey }}
+  {{ $preconsData := "" }}
+  {{ with $event.Resources.Get "precons.yaml" }}{{ $preconsData = . | transform.Unmarshal }}{{ end }}
   <header class="page-header">
     <div class="page-header-inner">
       <h2>{{ .Title }}</h2>

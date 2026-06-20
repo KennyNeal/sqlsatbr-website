@@ -23,12 +23,13 @@ and run `hugo server`.
 
 ## 1. Add a sponsor to an event
 
-Each event has its **own** sponsor list, identified by the event's `sponsorsKey`
-(e.g. `dodbr-2026`). Sponsors are data-driven — add an image and one block of YAML.
+Each event carries its own sponsor list directly in its content folder as
+`content/events/<slug>/sponsors.yaml`. Sponsors are data-driven — add an image and one
+block of YAML.
 
 ### Step 1 — Add the logo image
 
-Drop the logo into `static/sponsors/<sponsorsKey>/`, e.g.:
+Drop the logo into `static/sponsors/<slug>/`, e.g.:
 
 ```
 static/sponsors/dodbr-2026/acme.png
@@ -39,8 +40,8 @@ exact (the card scales it); use a lowercase, hyphenated file name.
 
 ### Step 2 — Add the sponsor to the data file
 
-Edit `data/sponsors/<sponsorsKey>.yaml` (e.g. `data/sponsors/dodbr-2026.yaml`). Find the
-group for the sponsor's tier and add an entry under its `sponsors:` list:
+Edit `content/events/<slug>/sponsors.yaml` (e.g. `content/events/dodbr-2026/sponsors.yaml`).
+Find the group for the sponsor's tier and add an entry under its `sponsors:` list:
 
 ```yaml
       - name: Acme Corporation
@@ -89,12 +90,10 @@ startDate: 2027-04-17          # drives "upcoming" sorting and the featured slot
 dateRange: April 17, 2027      # display text
 registrationUrl: https://…     # this event's Eventbrite (omit ⇒ no Register button)
 sessionizeId: abcd1234         # this event's Sessionize id (omit ⇒ no Schedule/Speakers)
-sponsorsKey: spring-2027       # data/sponsors/spring-2027.yaml (omit ⇒ no Sponsors page)
 volunteerUrl: https://…        # SignupGenius (omit ⇒ no Volunteer link)
 preconsVenueName / preconsVenueAddress
 eventVenueName / eventVenueAddress
 preconsIntro: ...              # only if it has PreCons
-preconsKey: spring-2027        # data/precons/spring-2027.yaml (omit ⇒ no PreCons page)
 ---
 
 Body copy describing the event (shown in the "About the event" section).
@@ -114,21 +113,21 @@ lighter event lighter. Copy from `content/events/dodbr-2026/`:
 | ---- | ---- | ----- |
 | `schedule.md` | Schedule (Sessionize grid) | `sessionizeId` on the event |
 | `speakers.md` | Speakers (Sessionize wall) | `sessionizeId` on the event |
-| `precons.md`  | PreCons workshops | `preconsKey` + data file |
-| `sponsors.md` | Sponsor listings | `sponsorsKey` + data file |
+| `precons.md`  | PreCons workshops | `precons.yaml` in the event folder |
+| `sponsors.md` | Sponsor listings | `sponsors.yaml` in the event folder |
 
 (You can also add `aliases:` in a sub-page if you want a short URL to redirect to it.)
 
 ### Step 3 — Add sponsor data and logos
 
-If the event has sponsors, create `data/sponsors/<slug>.yaml` and
+If the event has sponsors, create `content/events/<slug>/sponsors.yaml` and
 `static/sponsors/<slug>/` (see section 1 for the format).
 
 ### Step 4 — PreCons data and headshots
 
-If the event has PreCons, create `data/precons/<slug>.yaml` with the workshop and
-instructor data (see `data/precons/dodbr-2026.yaml` for the shape), then add instructor
-headshots to `static/precons/` and point each workshop's `photo:` at them.
+If the event has PreCons, create `content/events/<slug>/precons.yaml` with the workshop
+and instructor data (see `content/events/dodbr-2026/precons.yaml` for the shape), then
+add instructor headshots to `static/precons/` and point each workshop's `photo:` at them.
 
 ### Step 5 — Preview and publish
 
@@ -137,9 +136,6 @@ the event's pages, then open a Publication PR and merge.
 
 ### Things that are still per-occurrence (rare)
 
-- **Invoice worker:** `worker/src/index.js` builds invoice memo/name strings that include
-  the event year (around lines 223 and 238). Update if you use invoice intake for the new
-  event, and redeploy the Cloudflare Worker.
 - **Logo / favicon:** the header logo and favicon use `static/eventlogos/DodBR2026.png`
   (referenced in `layouts/_default/baseof.html`). Only touch this if the brand logo
   changes.
