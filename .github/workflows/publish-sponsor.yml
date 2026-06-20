@@ -74,8 +74,14 @@ jobs:
           yaml_path = f'content/events/{event_slug}/sponsors.yaml'
 
           if not os.path.exists(yaml_path):
-              print(f'ERROR: {yaml_path} not found. '
-                    f'Check that the event slug is correct and sponsors.yaml exists for that event.',
+              available = sorted(
+                  d for d in os.listdir('content/events')
+                  if os.path.isfile(f'content/events/{d}/sponsors.yaml')
+              )
+              hint = ', '.join(available) if available else '(none found)'
+              print(f'ERROR: No sponsors.yaml found for event slug "{event_slug}".\n'
+                    f'Available event slugs: {hint}\n'
+                    f'Re-run the workflow with one of the slugs above.',
                     file=sys.stderr)
               sys.exit(1)
 
