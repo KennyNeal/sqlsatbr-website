@@ -7,6 +7,7 @@ dateRange: July 17-18, 2026
 registrationUrl: https://dayofdatabr26.eventbrite.com/
 sessionizeId: ocxfgd65
 sponsorsKey: dodbr-2026
+logo: eventlogos/DodBR2026.png
 volunteerUrl: https://www.signupgenius.com/go/4090C49AFAA2EA2FF2-64424761-dayofdata#/
 intro: A free, all-day event hosted by the Baton Rouge User Groups.
 preconsVenueName: Louisiana Blue

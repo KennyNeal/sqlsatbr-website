@@ -9,7 +9,7 @@ intro: A new spring data event from the Baton Rouge User Groups — details comi
 # Omit any of these to fall back to the site defaults in hugo.yaml.
 primaryColor: "#2e7d32"
 secondaryColor: "#f4b400"
-# logo: spring-2027-logo.png        # drop the file in static/ and reference it here
+# logo: eventlogos/spring-2027-logo.png  # drop the file in static/eventlogos/ and reference it here
 # Add these as they are confirmed and the matching pages/sections appear automatically:
 #   registrationUrl: https://…        # adds the Register button
 #   eventVenueName / eventVenueAddress # adds the "When & where" section

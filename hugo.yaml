@@ -6,7 +6,7 @@ params:
   tagline: A free, all-day event hosted by the Baton Rouge User Groups.
   # Default site theme. Any event can override logo/primaryColor/secondaryColor
   # in its own front matter; see docs/runbook.md.
-  logo: DodBR2026.png
+  logo: eventlogos/DodBR2026.png
   primaryColor: "#013169"
   secondaryColor: "#e8a33d"
 

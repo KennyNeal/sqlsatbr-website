@@ -140,7 +140,7 @@ the event's pages, then open a Publication PR and merge.
 - **Invoice worker:** `worker/src/index.js` builds invoice memo/name strings that include
   the event year (around lines 223 and 238). Update if you use invoice intake for the new
   event, and redeploy the Cloudflare Worker.
-- **Logo / favicon:** the header logo and favicon use `static/DodBR2026.png`
+- **Logo / favicon:** the header logo and favicon use `static/eventlogos/DodBR2026.png`
   (referenced in `layouts/_default/baseof.html`). Only touch this if the brand logo
   changes.
 - **Archive:** after an event is over you can add an entry under `content/archive/` for
@@ -160,7 +160,7 @@ In `hugo.yaml` under `params`:
 
 ```yaml
 params:
-  logo: DodBR2026.png        # file in static/
+  logo: eventlogos/DodBR2026.png  # file in static/eventlogos/
   primaryColor: "#013169"    # dominant brand color (banner, buttons, headings, links)
   secondaryColor: "#e8a33d"  # accent (hero date, the Register pill on event pages)
 ```
