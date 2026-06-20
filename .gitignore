@@ -1,5 +1,6 @@
 public/
 resources/_gen/
+node_modules/
 .hugo_build.lock
 .wrangler/
 .dev.vars*
