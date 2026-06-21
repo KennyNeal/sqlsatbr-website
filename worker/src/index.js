@@ -274,13 +274,24 @@ async function createPayPalInvoice(submission, packageAmount, accessToken, env) 
   });
 
   const { body, rawBody } = await readPayPalResponse(response);
-  if (!response.ok || !body.id) {
+
+  if (!response.ok) {
     throw new Error(
       extractPayPalError(body, "PayPal could not create the invoice.", response.status, rawBody),
     );
   }
 
-  return body;
+  // PayPal returns a link object {rel, href, method} rather than the full invoice body.
+  // Extract the invoice ID from the href when id is not directly present.
+  const invoiceId = body?.id ?? body?.href?.split("/").pop() ?? null;
+
+  if (!invoiceId) {
+    throw new Error(
+      extractPayPalError(body, "PayPal could not create the invoice.", response.status, rawBody),
+    );
+  }
+
+  return { ...body, id: invoiceId };
 }
 
 async function sendPayPalInvoice(invoiceId, accessToken, env) {
