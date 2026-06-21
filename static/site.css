@@ -161,18 +161,29 @@ body {
   background: linear-gradient(160deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
   color: #ffffff;
   padding: 4rem 1.5rem;
-  text-align: center;
 }
 
 .hero-inner {
-  max-width: 48rem;
+  max-width: 64rem;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.hero-visual {
+  flex: 0 0 auto;
 }
 
 .hero-logo {
-  width: 7.5rem;
-  height: 7.5rem;
-  margin: 0 auto;
+  width: 9rem;
+  height: 9rem;
+  display: block;
   border-radius: 50%;
   background: #ffffff;
   padding: 0.4rem;
@@ -183,9 +194,7 @@ body {
   margin: 0;
   font-family: "Arvo", Georgia, serif;
   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   color: var(--brand-secondary);
 }
 
@@ -197,14 +206,89 @@ body {
 }
 
 .hero-tagline {
-  margin: 0 auto;
-  max-width: 34rem;
+  margin: 0;
   font-size: 1.15rem;
   color: rgba(255, 255, 255, 0.92);
 }
 
 .hero-actions {
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+@media (max-width: 48rem) {
+  .hero {
+    text-align: center;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-logo {
+    margin: 0 auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* Homepage pillars strip */
+.section-pillars {
+  background: var(--brand-secondary);
+  padding: 0 1.5rem;
+}
+
+.pillars {
+  max-width: 64rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pillar {
+  flex: 1 1 11rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1.5rem 2rem;
+  border-left: 1px solid rgba(1, 49, 105, 0.18);
+}
+
+.pillar:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.pillar-value {
+  font-family: "Arvo", Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--brand-primary);
+  line-height: 1.1;
+}
+
+.pillar-label {
+  font-size: 0.9rem;
+  color: rgba(1, 49, 105, 0.72);
+}
+
+/* Archive note */
+.section-archive-note {
+  padding: 1.25rem 1.5rem;
+  background: var(--brand-bg-alt);
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--brand-muted);
+}
+
+.section-archive-note p {
+  margin: 0;
 }
 
 .button-hero {

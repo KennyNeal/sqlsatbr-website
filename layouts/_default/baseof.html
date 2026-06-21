@@ -7,7 +7,6 @@
     {{- $secondary := site.Params.secondaryColor -}}
     {{- $themeEvent := "" -}}
     {{- if eq .Section "events" -}}{{- $themeEvent = .CurrentSection -}}{{- end -}}
-    {{- if .IsHome -}}{{- $themeEvent = partial "featured-event.html" . -}}{{- end -}}
     {{- with $themeEvent -}}
       {{- with .Params.logo }}{{ $logo = . }}{{ end -}}
       {{- with .Params.primaryColor }}{{ $primary = . }}{{ end -}}

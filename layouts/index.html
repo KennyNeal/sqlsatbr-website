@@ -10,24 +10,36 @@
 
   {{ with $featured }}
     <section class="hero">
-      <div class="hero-inner stack">
-        <img class="hero-logo" src="{{ (.Params.logo | default site.Params.logo) | relURL }}" alt="{{ .Title }} logo" width="120" height="120">
-        {{ with .Params.dateRange }}<p class="hero-date">{{ . }}</p>{{ end }}
-        <h2 class="hero-title">{{ .Title }}</h2>
-        {{ with .Params.intro }}<p class="hero-tagline">{{ . }}</p>{{ end }}
-        <div class="button-row hero-actions">
-          {{ with .Params.registrationUrl }}<a class="button button-hero" href="{{ . }}">RSVP / Register</a>{{ end }}
-          <a class="button button-hero-ghost" href="{{ .RelPermalink }}">Event details</a>
+      <div class="hero-inner">
+        <div class="hero-text stack">
+          {{ with .Params.dateRange }}<p class="hero-date">{{ . }}</p>{{ end }}
+          <h2 class="hero-title">{{ .Title }}</h2>
+          {{ with .Params.intro }}<p class="hero-tagline">{{ . }}</p>{{ end }}
+          <div class="button-row hero-actions">
+            {{ with .Params.registrationUrl }}<a class="button button-hero" href="{{ . }}">Register free</a>{{ end }}
+            <a class="button button-hero-ghost" href="{{ .RelPermalink }}">Event details</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-logo" src="{{ (.Params.logo | default site.Params.logo) | relURL }}" alt="{{ .Title }} logo" width="144" height="144">
         </div>
       </div>
     </section>
   {{ end }}
 
-  <section class="section section-light">
-    <div class="section-inner stack">
-      <h2 class="section-heading">About</h2>
-      <div class="prose lede-prose">
-        <p>Day of Data Baton Rouge is a series of <strong>free</strong> data and technology events hosted by the <strong>Baton Rouge User Groups</strong> — bringing IT and Microsoft Data Platform professionals, students, and tech enthusiasts together for expert-led training, career insights, and networking.</p>
+  <section class="section-pillars">
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-value">Free</span>
+        <span class="pillar-label">No cost to attend</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-value">All day</span>
+        <span class="pillar-label">Talks from morning to evening</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-value">Community</span>
+        <span class="pillar-label">Hosted by the Baton Rouge User Groups</span>
       </div>
     </div>
   </section>
@@ -44,12 +56,8 @@
   {{ end }}
 
   {{ with site.GetPage "/archive" }}
-    <section class="section section-light">
-      <div class="section-inner stack">
-        <h2 class="section-heading">Past events</h2>
-        <p>Browse the history of Baton Rouge data events.</p>
-        <div class="button-row"><a class="button button-secondary" href="{{ .RelPermalink }}">View past events</a></div>
-      </div>
-    </section>
+    <div class="section-archive-note">
+      <p>Looking for a past event? <a href="{{ .RelPermalink }}">Browse the archive &rarr;</a></p>
+    </div>
   {{ end }}
 {{ end }}
