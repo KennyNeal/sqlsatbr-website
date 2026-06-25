@@ -1096,3 +1096,23 @@ a {
 code {
   font-family: Consolas, "Courier New", monospace;
 }
+
+/* Announcement list cards */
+.announcement-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--brand-border);
+}
+
+.announcement-card:last-child {
+  border-bottom: none;
+}
+
+.announcement-title {
+  margin: 0.25rem 0 0;
+  font-size: 1.3rem;
+}
+
+.announcement-excerpt {
+  margin: 0.35rem 0 0;
+  color: var(--brand-muted);
+}
