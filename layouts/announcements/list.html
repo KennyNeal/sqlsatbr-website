@@ -1,0 +1,23 @@
+{{ define "main" }}
+  {{ $event := .Parent }}
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="page-header-lede">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  {{ partial "event-subnav.html" $event }}
+  <section class="section">
+    <div class="section-inner narrow stack">
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="announcement-card stack-tight">
+          <p class="eyebrow">{{ .Date.Format "January 2, 2006" }}</p>
+          <h3 class="announcement-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Description }}<p class="announcement-excerpt">{{ . }}</p>{{ end }}
+        </article>
+      {{ else }}
+        <p>No announcements yet — check back soon.</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
