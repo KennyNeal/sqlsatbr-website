@@ -126,6 +126,10 @@ body {
   padding: 3.5rem 1.5rem;
 }
 
+.section-compact {
+  padding: 2rem 1.5rem;
+}
+
 .section-light {
   background: var(--brand-bg-alt);
 }
@@ -301,14 +305,14 @@ body {
   background: rgba(255, 255, 255, 0.85);
 }
 
-.button-hero-ghost {
-  background: transparent;
+.button-hero-secondary {
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
-.button-hero-ghost:hover {
-  background: rgba(255, 255, 255, 0.12);
+.button-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 
 /* Interior page header band */
@@ -644,6 +648,10 @@ a {
 
 .footer-inner p {
   margin: 0;
+}
+
+.footer-inner p a {
+  color: #ffffff;
 }
 
 .footer-links a {

@@ -17,7 +17,7 @@
           {{ with .Params.intro }}<p class="hero-tagline">{{ . }}</p>{{ end }}
           <div class="button-row hero-actions">
             {{ with .Params.registrationUrl }}<a class="button button-hero" href="{{ . }}">Register free</a>{{ end }}
-            <a class="button button-hero-ghost" href="{{ .RelPermalink }}">Event details</a>
+            <a class="button button-hero-secondary" href="{{ .RelPermalink }}">Event details</a>
           </div>
         </div>
         <div class="hero-visual">
@@ -44,12 +44,37 @@
     </div>
   </section>
 
+  <section class="section section-light">
+    <div class="section-inner stack">
+      <h2 class="section-heading">About</h2>
+      <div class="prose lede-prose">
+        <p>Day of Data Baton Rouge is a free, community-driven event hosted by the <a href="https://www.meetup.com/brusergroups/"><strong>Baton Rouge User Groups</strong></a> for IT and Microsoft Data Platform professionals, students, and tech enthusiasts. Whether your interests are Business Intelligence, Analytics, Azure SQL, or SQL Server, the event is built to help you grow your skills and connect with the local data community.</p>
+        <p>Attendees get a full day of expert-led technical sessions from SQL Server experts, Microsoft MVPs, and published authors, plus career-development insights, food, and networking — all at no cost. It's an approachable, all-levels event: whether you're just getting started or have years of experience, there's a track for you.</p>
+      </div>
+      <h3>Our history</h3>
+      <div class="prose">
+        <p>Day of Data Baton Rouge carries on a long-running Baton Rouge tradition. The event began as <strong>SQL Saturday Baton Rouge</strong>, part of the global SQLSaturday community series, and the Archive preserves public records reaching back to 2015. Over the years the event has grown into today's Day of Data Baton Rouge, still hosted by the same Baton Rouge User Groups community. Browse the Archive for past Event Years, or see the <a href="https://sqlsaturday.com/tags/#Baton%20Rouge">broader SQLSaturday Baton Rouge history</a> for the earlier legacy record.</p>
+      </div>
+      {{ with site.GetPage "/archive" }}
+        <div class="button-row">
+          <a class="button button-secondary" href="{{ .RelPermalink }}">Visit the Archive</a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
   {{ with $rest }}
-    <section class="section">
+    <section class="section section-compact">
       <div class="section-inner stack">
-        <h2 class="section-heading">More upcoming events</h2>
-        <div class="event-grid">
-          {{ range . }}{{ partial "event-card.html" . }}{{ end }}
+        <p class="eyebrow">More upcoming events</p>
+        <div class="archive-grid">
+          {{ range . }}
+            <article class="archive-card stack stack-tight">
+              {{ with .Params.dateRange }}<p class="eyebrow">{{ . }}</p>{{ end }}
+              <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{ with .Params.eventVenueName }}<p>{{ . }}</p>{{ end }}
+            </article>
+          {{ end }}
         </div>
       </div>
     </section>

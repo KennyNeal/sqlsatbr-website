@@ -5,7 +5,7 @@ wide: true
 aliases: ["/become-a-sponsor/"]
 ---
 
-Day of Data Baton Rouge is a **free, all-day technology conference** hosted by the Baton Rouge User Groups — and it runs entirely on sponsor support. Now in its **14th year**, the event draws **450+ attendees**: SQL Server, data, .NET, cloud, BI, and IT professionals, plus students and folks in career transition from across the region. For sponsors it's a one-stop shop for **recruiting, brand exposure, and IT staff training** — and a way to give back to the local tech community.
+Day of Data Baton Rouge is a **free, all-day technology conference** hosted by the [Baton Rouge User Groups](https://www.meetup.com/brusergroups/) — and it runs entirely on sponsor support. Now in its **14th year**, the event draws **450+ attendees**: SQL Server, data, .NET, cloud, BI, and IT professionals, plus students and folks in career transition from across the region. For sponsors it's a one-stop shop for **recruiting, brand exposure, and IT staff training** — and a way to give back to the local tech community.
 
 Your support also funds our community impact: we've donated thousands to the Foundation for East Baton Rouge Parish Schools and host a kids' STEM track for 4th–8th graders.
 
