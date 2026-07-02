@@ -10,6 +10,7 @@
     <div class="stack prose">
       {{ .Content }}
     </div>
+    {{ if not .Params.closed }}
     <form class="intake-form stack" method="post" action="{{ .Params.workerEndpoint }}">
       <input type="hidden" name="eventName" value="{{ .Parent.Title }}">
       <input type="hidden" name="eventSlug" value="{{ .Params.eventSlug }}">
@@ -143,6 +144,7 @@
         });
       })();
     </script>
+    {{ end }}
     </div>
   </section>
 {{ end }}

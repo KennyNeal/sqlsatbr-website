@@ -1,39 +1,15 @@
 ---
 title: Sponsor Sign-Up
-description: Sign up to sponsor Day of Data Baton Rouge 2026 and pay your invoice online — by card, PayPal, or AP/check.
+description: Sponsor sign-up for Day of Data Baton Rouge 2026 is now closed.
 layout: invoice-request
 workerEndpoint: https://sqlsatbr-website.kneal30.workers.dev/api/invoice-request
 eventSlug: dodbr-2026
 aliases: ["/invoice-request/"]
+closed: true
 build:
   list: never
 ---
 
-Complete the form below to confirm your sponsorship. We'll generate a **PayPal invoice for your selected package** that you can **pay immediately by card or PayPal** — or pay later if your organization needs accounts payable, ACH, or check processing.
+**Sponsor sign-up for the 2026 Event Year is now closed** — the July 1, 2026 deadline has passed. Thank you to everyone who signed up to sponsor this year's event!
 
-## What you'll need
-
-1. Sponsor organization name
-2. Primary contact name, email, and phone
-3. Requested Sponsor Package
-4. Billing / accounts payable email
-5. Your website and a link to your logo (for the Sponsor Listing)
-
-## Before you submit
-
-- Review the current [Sponsor Packages]({{< relref "/events/dodbr-2026/become-a-sponsor.md" >}}) for package pricing and booth-space guidance.
-- Review the current [Sponsor Listings]({{< relref "/events/dodbr-2026/sponsors.md" >}}) to see the approved 2026 sponsor mix.
-
-## Mailing &amp; payment
-
-Make checks payable to **Baton Rouge User Groups** — the local not-for-profit that operates the event. We can provide an official invoice on request.
-
-Mail payment, booth materials, and bag inserts to:
-
-Baton Rouge User Groups  
-9618 Jefferson Hwy  
-Suite D Box 113  
-Baton Rouge, LA 70809  
-(225) 755-9325
-
-Sponsor payment is due by **July 1, 2026**, and bag insert materials are due by **July 7, 2026**.
+Want to sponsor a future event? Email [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com) and we'll reach out when sign-up opens for the next Event Year, or see the current [Become a Sponsor]({{< relref "/events/dodbr-2026/become-a-sponsor.md" >}}) page for details.

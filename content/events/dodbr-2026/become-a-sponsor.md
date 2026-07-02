@@ -5,9 +5,11 @@ wide: true
 aliases: ["/become-a-sponsor/"]
 ---
 
-Day of Data Baton Rouge is a **free, all-day technology conference** hosted by the [Baton Rouge User Groups](https://www.meetup.com/brusergroups/) — and it runs entirely on sponsor support. Now in its **14th year**, the event draws **450+ attendees**: SQL Server, data, .NET, cloud, BI, and IT professionals, plus students and folks in career transition from across the region. For sponsors it's a one-stop shop for **recruiting, brand exposure, and IT staff training** — and a way to give back to the local tech community.
+Day of Data Baton Rouge is a **free, all-day technology conference** hosted by the [Baton Rouge User Groups](https://www.meetup.com/brusergroups/) — and it runs entirely on sponsor support. Now in its **17th year** (started in 2009), the event draws **450+ attendees**: SQL Server, data, .NET, cloud, BI, and IT professionals, plus students and folks in career transition from across the region. For sponsors it's a one-stop shop for **recruiting, brand exposure, and IT staff training** — and a way to give back to the local tech community.
 
 Your support also funds our community impact: we've donated thousands to the Foundation for East Baton Rouge Parish Schools and host a kids' STEM track for 4th–8th graders.
+
+**Sponsor registration for the 2026 Event Year is now closed** — the July 1, 2026 deadline has passed. Thank you to everyone who supported this year's event! Want to sponsor a future event? See [Sponsor a future event](#sponsor-a-future-event) below.
 
 ## Who you'll reach
 
@@ -33,22 +35,10 @@ Booth space is **limited and reserved first-come, first-served at time of paymen
 
 Donating books for our library and day-end raffle? Ask about our free **Book Sponsor** option.
 
-## Payment
+All sponsor and booth personnel are asked to follow our [Code of Conduct]({{< relref "/code-of-conduct.md" >}}).
 
-All sponsorships are **prepaid**. Pay by PayPal or credit card to sqlpassbr@gmail.com, or by check made out to **Baton Rouge User Groups** (a local not-for-profit). We can provide an official invoice on request.
+You can review the current [Sponsor Listings]({{< relref "/events/dodbr-2026/sponsors.md" >}}) to see who supported the 2026 Event Year.
 
-## Key dates (2026)
+## Sponsor a future event
 
-- **Sponsor registration & payment:** by **July 1, 2026**
-- **Bag insert materials due:** by **July 7, 2026**
-- **Event day:** **July 18, 2026** — LSU Business Education Complex, Baton Rouge
-
-## Ready to sponsor?
-
-Sign up online and you'll get a sponsorship invoice you can **pay immediately by card or PayPal** — or pay later if your organization needs AP, ACH, or check processing.
-
-{{< sponsor-pay >}}
-
-Just want to talk first? [Submit sponsor interest for the 2026 Event Year](https://docs.google.com/forms/d/e/1FAIpQLSeYTQBlIC2UByJCf1vqn6JabDY0nz3ToNRKf6TCQ6YbxPIFsQ/viewform) or email [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com). All sponsor and booth personnel are asked to follow our [Code of Conduct]({{< relref "/code-of-conduct.md" >}}).
-
-You can also review the current [Sponsor Listings]({{< relref "/events/dodbr-2026/sponsors.md" >}}) to see who is already supporting the 2026 Event Year.
+Missed the 2026 window or want to get in early for what's next? We'd love to hear from you — email [sqlpassbr@gmail.com](mailto:sqlpassbr@gmail.com) and we'll reach out when sponsorship opens for the next Event Year. You can also check the [Spring 2027 sponsorship page]({{< relref "/events/spring-2027/become-a-sponsor.md" >}}) for updates.
