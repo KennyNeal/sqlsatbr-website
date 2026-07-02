@@ -28,6 +28,57 @@
     </section>
   {{ end }}
 
+  {{ with .Resources.Get "precons.yaml" }}
+    {{ $preconsData := . | transform.Unmarshal }}
+    {{ with $preconsData.precons }}
+      <section class="section">
+        <div class="section-inner stack">
+          <h2 class="section-heading">PreCons</h2>
+          {{ with $.Params.preconsIntro }}<p class="lede-prose">{{ . }}</p>{{ end }}
+          <div class="precon-teaser-grid">
+            {{ range $p := . }}
+              <article class="precon-teaser-card">
+                {{ with $p.photo }}<img class="precon-teaser-photo" src="{{ . | relURL }}" alt="{{ $p.name }}" width="64" height="64" loading="lazy">{{ end }}
+                <div class="stack stack-tight">
+                  {{ with $p.credential }}<p class="precon-credential">{{ . }}</p>{{ end }}
+                  <h3 class="precon-teaser-name">{{ $p.title }}</h3>
+                  <p class="precon-teaser-instructor">{{ $p.name }}</p>
+                  {{ with $p.price }}<p class="precon-teaser-price">{{ . }}</p>{{ end }}
+                </div>
+              </article>
+            {{ end }}
+          </div>
+          {{ with $.GetPage "precons" }}
+            <div class="button-row"><a class="button button-secondary" href="{{ .RelPermalink }}">View all PreCons</a></div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+  {{ with .Params.sessionizeId }}
+    <section class="section section-light">
+      <div class="section-inner section-inner-full stack">
+        <h2 class="section-heading">Speakers</h2>
+        <div class="speakers-embed">
+          <input type="checkbox" id="speakers-expand" class="speakers-expand-toggle">
+          <div class="speakers-wall">
+            <div id="sessionize-speakers"></div>
+            <script type="text/javascript" src="https://sessionize.com/api/v2/{{ . }}/view/SpeakerWall"></script>
+            <noscript>
+              <p>The speaker list requires JavaScript. View the full lineup on
+                <a href="https://sessionize.com/api/v2/{{ . }}/view/Speakers">Sessionize</a>.</p>
+            </noscript>
+          </div>
+          <label class="speakers-expand-label" for="speakers-expand">Show all speakers</label>
+        </div>
+        {{ with $.GetPage "schedule" }}
+          <div class="button-row"><a class="button button-secondary" href="{{ .RelPermalink }}">View full schedule</a></div>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
   {{ if or .Params.preconsVenueName .Params.eventVenueName }}
     <section class="section">
       <div class="section-inner stack">

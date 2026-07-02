@@ -7,6 +7,7 @@ precons:
       - A Microsoft Data Platform and PowerShell MVP, speaker, and community contributor, Ben has a knack for breaking down complex topics into practical, actionable insights. When he's not automating workflows or sharing his knowledge, you'll find him engaging with the #SQLFamily or exploring new tech to help others work smarter.
       - Follow Ben on all Social Media (@dbaduck) and dive into the world of automation and database magic with him!
     title: PowerShell DBA Dream dbatools Workshop
+    price: "$150 — lunch included"
     registerUrl: https://www.eventbrite.com/e/powershell-dba-dream-dbatools-workshop-tickets-1991071667957?aff=oddtdtcreator
     description:
       - This full-day, hands-on class will guide you through the most essential commands in the dbatools PowerShell module — the toolkit that revolutionizes SQL Server administration. You'll learn how to automate daily DBA tasks, streamline your workflow, and confidently manage SQL environments using PowerShell.
@@ -39,6 +40,7 @@ precons:
       - Daryl Roberts is the Head of AI at obney.ai — and his road there was anything but typical. He spent six years as a diesel mechanic (and a U.S. Marine before that) before teaching himself AI, building projects in public until the work spoke for itself. Today he designs and ships production AI systems for clients across legal, education, industrial, and healthcare, and he's taught hands-on AI engineering to working developers.
       - Daryl is a believer in practical strategies over complexity. Borrowing the Marine Corps' OODA loop, he teaches an "AI Engineering Loop" for building systems you can actually trust, and has spoken on applied AI engineering at NoAI. He loves turning intimidating topics into things anyone can build. Off the clock, you'll find him reading research papers or escaping into the Louisiana outdoors.
     title: "AI for the Rest of Us: Vibe Coding & Building MCP Servers with FastMCP"
+    price: "$150 — lunch included"
     registerUrl: https://www.eventbrite.com/e/ai-for-the-rest-of-us-vibe-coding-building-mcp-servers-with-fastmcp-tickets-1991280533680?aff=oddtdtcreator
     description:
       - You've heard the buzzwords — AI, LLMs, vectors, embeddings, "MCP" — but you've never actually sat down and built anything with them. This hands-on day is for you. No AI experience required, and you don't even need to be a developer.

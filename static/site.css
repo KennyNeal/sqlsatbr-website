@@ -547,6 +547,71 @@ body {
   color: var(--brand-primary) !important;
 }
 
+/* Compact speaker wall (event home page) — the wall view has no built-in
+   paging, so shrink it down and collapse it behind a "Show all" toggle
+   instead of letting 40+ speaker photos dominate the page. */
+.speakers-embed .sz-speakers--wall .sz-speaker {
+  width: 6.5rem !important;
+  padding: 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.speakers-embed .sz-speaker--compact .sz-speaker__photo,
+.speakers-embed .sz-speaker--compact .sz-speaker__photo--placeholder {
+  width: 4rem !important;
+  height: 4rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.speakers-embed .sz-speaker--compact .sz-speaker__name {
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+}
+
+.speakers-embed .sz-speaker--compact .sz-speaker__tagline {
+  display: none !important;
+}
+
+.speakers-wall {
+  position: relative;
+  max-height: 15rem;
+  overflow: hidden;
+}
+
+.speakers-wall::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+}
+
+.speakers-expand-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.speakers-expand-toggle:checked ~ .speakers-wall {
+  max-height: none;
+}
+
+.speakers-expand-toggle:checked ~ .speakers-wall::after {
+  display: none;
+}
+
+.speakers-expand-label {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  cursor: pointer;
+}
+
+.speakers-expand-toggle:checked ~ .speakers-expand-label {
+  display: none;
+}
+
 /* PreCon speaker + session cards */
 .precon-speaker {
   display: flex;
@@ -605,6 +670,49 @@ body {
   margin: 0;
   font-family: "Arvo", Georgia, serif;
   font-size: 1.05rem;
+  color: var(--brand-primary);
+}
+
+/* PreCon teaser cards (event home page) */
+.precon-teaser-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.precon-teaser-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  border: 1px solid var(--brand-border);
+  border-left: 5px solid var(--brand-primary);
+  border-radius: 0.5rem;
+  background: #ffffff;
+}
+
+.precon-teaser-photo {
+  flex: 0 0 auto;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.precon-teaser-name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.precon-teaser-instructor {
+  margin: 0;
+  color: var(--brand-muted);
+}
+
+.precon-teaser-price {
+  margin: 0.15rem 0 0;
+  font-weight: 700;
+  font-size: 0.85rem;
   color: var(--brand-primary);
 }
 
