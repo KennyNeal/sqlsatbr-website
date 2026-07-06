@@ -55,6 +55,9 @@ groups:
   - name: TekChix
     url: https://thetekchix.com/
     logo: sponsorlogos/tekchix.png
+  - name: DevRev
+    url: https://devrev.ai/
+    logo: sponsorlogos/devrev.png
 - title: Silver Sponsors
   tier: silver
   sponsors:
