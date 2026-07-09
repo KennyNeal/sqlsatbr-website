@@ -27,6 +27,9 @@ groups:
   - name: Louisiana State University
     url: https://www.lsu.edu/business/sdeis/index.php
     logo: sponsorlogos/lsu-sdeis-logo.png
+- title: Gold Sponsors (Unattended)
+  tier: gold-unattended
+  sponsors: []
 - title: Gold Sponsors
   tier: gold
   sponsors:
@@ -83,3 +86,6 @@ groups:
   - name: 180 Pros
     url: https://180pros.com/
     logo: sponsorlogos/180Pros.jpg
+- title: Book Sponsors
+  tier: book
+  sponsors: []

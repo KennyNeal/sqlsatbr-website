@@ -57,8 +57,11 @@ Find the group for the sponsor's tier and add an entry under its `sponsors:` lis
 | `logoFit` | no       | `standard` (default), `wide`, or `extra-wide` for very wide logos. |
 
 Tiers (the `tier:` value on each group): `global`, `platinum`, `facility`, `gold`,
-`silver`. **Stick to these** — each has matching sizing in `static/site.css`. A new tier
-renders but falls back to a plain layout until its styles are added.
+`gold-unattended`, `silver`, `bronze`, `book`. **Stick to these** — each has matching
+sizing in `static/site.css`. A new tier renders but falls back to a plain layout until
+its styles are added. The `publish-sponsor.yml` workflow also requires a group with the
+target `tier` to already exist in the event's `sponsors.yaml` — add an empty group ahead
+of time if you're introducing a new tier for the first sponsor of that kind.
 
 ### Step 3 — Preview and publish
 

@@ -17,6 +17,7 @@
     {{ with $eventYearSponsors }}
       <div class="stack sponsor-groups">
         {{ range .groups }}
+          {{ if .sponsors }}
           {{ $tier := .tier | default "standard" }}
           <section class="stack stack-tight">
             <h3>{{ .title }}</h3>
@@ -50,6 +51,7 @@
               {{ end }}
             </div>
           </section>
+          {{ end }}
         {{ end }}
       </div>
     {{ end }}

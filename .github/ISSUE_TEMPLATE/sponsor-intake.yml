@@ -24,6 +24,7 @@ body:
         - gold-unattended
         - silver
         - bronze
+        - book
     validations:
       required: true
 

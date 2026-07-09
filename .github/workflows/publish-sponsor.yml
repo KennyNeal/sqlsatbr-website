@@ -19,6 +19,7 @@ on:
           - gold
           - silver
           - bronze
+          - book
       sponsor_name:
         description: 'Sponsor name (as shown publicly on the site)'
         required: true
