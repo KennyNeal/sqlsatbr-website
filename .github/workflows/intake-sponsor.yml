@@ -12,6 +12,7 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      actions: write
 
     steps:
       - name: Check out repository
@@ -216,3 +217,13 @@ jobs:
         run: |
           gh pr merge "$PR_URL" --squash \
             --subject "Add ${SPONSOR_NAME} as ${TIER} sponsor (${EVENT_SLUG})"
+
+      - name: Trigger site rebuild
+        if: steps.parse.outputs.LOGO_RESOLVED == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # A GITHUB_TOKEN-authored merge doesn't trigger the push-based
+          # publish-site.yml run, so dispatch it explicitly (workflow_dispatch
+          # is exempt from that restriction).
+          gh workflow run publish-site.yml --ref main
