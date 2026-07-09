@@ -88,4 +88,7 @@ groups:
     logo: sponsorlogos/180Pros.jpg
 - title: Book Sponsors
   tier: book
-  sponsors: []
+  sponsors:
+  - name: O’Reilly
+    url: https://www.oreilly.com/
+    logo: sponsorlogos/oreilly.jpg
