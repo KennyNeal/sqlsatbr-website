@@ -18,10 +18,10 @@ body:
     attributes:
       label: Sponsor Tier
       options:
-        - global
         - platinum
         - facility
         - gold
+        - gold-unattended
         - silver
         - bronze
     validations:
