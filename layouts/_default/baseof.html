@@ -13,10 +13,18 @@
       {{- with .Params.primaryColor }}{{ $primary = . }}{{ end -}}
       {{- with .Params.secondaryColor }}{{ $secondary = . }}{{ end -}}
     {{- end -}}
+    {{- /* Canonical URL. Pages are self-canonical, except the featured event: its body
+           is also served at the site root, so point search engines there. Which event is
+           featured changes as dates pass, so this must be computed, never hardcoded. */ -}}
+    {{- $canonical := .Permalink -}}
+    {{- with partial "featured-event.html" . -}}
+      {{- if eq .RelPermalink $.RelPermalink -}}{{- $canonical = site.Home.Permalink -}}{{- end -}}
+    {{- end -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if and .Title (not .IsHome) }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
+    <link rel="canonical" href="{{ $canonical }}">
     <script>
       (function () {
         var host = window.location.hostname.toLowerCase();

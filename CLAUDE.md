@@ -79,6 +79,11 @@ step-by-step editor guide. Key points:
   archive note. Put anything event-shaped in `event-body.html` so both pages get it; put
   site-level content in `index.html` only. `event-subnav.html` links its title to the site
   root when its event is the featured one, so the featured event has one destination.
+  Because the featured event's body is served at two URLs, `baseof.html` gives it a
+  `rel="canonical"` pointing at the site root; every other page is self-canonical. Which
+  event is featured changes as dates pass, so this is computed from
+  `featured-event.html` — never hardcode it, or a passed event will end up declaring a
+  newer event's page as its canonical home.
 - **Never hand-write a rooted internal link** (`{{ "/foo/" | relURL }}`): `relURL` leaves a
   leading `/` untouched, so the link drops the `baseURL` subpath and 404s on the GitHub
   Pages preview host (it only works on the bare production domain). Derive URLs from page

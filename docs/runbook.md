@@ -210,8 +210,10 @@ so you can see this in action.
   theme. **The home page *is* the featured event:** it renders that event's full body from
   `layouts/partials/event-body.html` — the same partial `layouts/events/event.html` uses —
   then appends a "More upcoming events" grid and an archive note. The event keeps its own
-  URL too, so its sub-nav title links home rather than to a second copy of the same page.
-  **No manual archiving is needed:** once an event's `startDate` passes, it leaves
+  URL too, so its sub-nav title links home rather than to a second copy of the same page,
+  and it carries a `rel="canonical"` pointing at the site root so search engines treat the
+  two URLs as one page. All of this follows whichever event is currently featured, with no
+  edits when one event supersedes another. **No manual archiving is needed:** once an event's `startDate` passes, it leaves
   the home/upcoming automatically and appears on the **Past Events** page (which lists
   finished events from `content/events/` above the legacy `content/archive/` entries).
   The one exception: if there's **no upcoming event**, the most recent event stays
