@@ -4,7 +4,6 @@ description: Sponsor sign-up for Day of Data Baton Rouge 2026 is now closed.
 layout: invoice-request
 workerEndpoint: https://sqlsatbr-website.kneal30.workers.dev/api/invoice-request
 eventSlug: dodbr-2026
-aliases: ["/invoice-request/"]
 closed: true
 build:
   list: never

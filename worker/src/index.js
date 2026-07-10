@@ -5,14 +5,32 @@ const ALLOWED_ORIGINS = new Set([
   "http://localhost:1313",
 ]);
 
+// Authoritative Sponsor Package pricing, keyed by Event Year then package name.
+//
+// Each event sets its own tiers and prices, so a package name alone is never enough to
+// price an invoice — "Silver" may cost different amounts at different events. Prices are
+// held here rather than read from the submission so the browser can never choose what it
+// is charged.
+//
+// The site renders its comparison table and package dropdown from
+// content/events/<slug>/packages.yaml. That file and this map must agree; a test in
+// index.test.js reads the YAML and fails if they drift.
 const PACKAGE_PRICING = {
-  Blog: "50.00",
-  Bronze: "250.00",
-  Silver: "600.00",
-  Gold: "1500.00",
-  "Unattended Booth": "1750.00",
-  Platinum: "2500.00",
+  "dodbr-2026": {
+    Blog: "50.00",
+    Bronze: "250.00",
+    Silver: "600.00",
+    "Unattended Booth": "1750.00",
+    Gold: "1500.00",
+    Platinum: "2500.00",
+  },
 };
+
+export function priceFor(eventSlug, sponsorPackage) {
+  return PACKAGE_PRICING[eventSlug]?.[sponsorPackage];
+}
+
+export const PRICING_TABLE = PACKAGE_PRICING;
 
 export default {
   async fetch(request, env) {
@@ -143,7 +161,7 @@ async function handleInvoiceRequest(request, env) {
     );
   }
 
-  const packageAmount = PACKAGE_PRICING[submission.sponsorPackage];
+  const packageAmount = priceFor(submission.eventSlug, submission.sponsorPackage);
   if (!packageAmount) {
     return respondForRequest(
       request,
@@ -523,6 +541,8 @@ export function validateSubmission(submission) {
   const errors = [];
 
   if (!submission.eventName) errors.push("eventName");
+  // eventSlug selects the price table, so an invoice cannot be built without it.
+  if (!submission.eventSlug) errors.push("eventSlug");
   if (!submission.organizationName) errors.push("organizationName");
   if (!submission.primaryContactName) errors.push("primaryContactName");
   if (!looksLikeEmail(submission.contactEmail)) errors.push("contactEmail");

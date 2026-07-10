@@ -1,0 +1,116 @@
+# Sponsor Packages for this Event Year.
+#
+# Drives the comparison table on become-a-sponsor.md (via the {{< sponsor-packages >}}
+# shortcode) and the package dropdown on the Sponsor Intake form. Omit this file entirely
+# and both disappear — an event with no published packages simply has no table and no form
+# options.
+#
+# `price` is displayed on the site. It is NOT what the sponsor is charged: the Cloudflare
+# Worker holds its own per-event price map (worker/src/index.js, PACKAGE_PRICING) so a
+# content edit can never change what PayPal invoices. A test in worker/src/index.test.js
+# reads this file and fails if the two ever disagree.
+#
+# `featured` names the tier to highlight as the standout column.
+# Benefit values: true (check), false (dash), or free text ("Small", "Available",
+# "Yes (x2)" — a leading Yes/No renders as an icon plus the remaining text).
+
+featured: Platinum
+
+benefits:
+  - key: logo
+    label: Logo on Website and printed materials
+  - key: swag
+    label: Your Swag in 450 Bags
+  - key: raffle
+    label: Raffle Ticket for Day-End Raffle
+  - key: booth
+    label: Booth Space
+  - key: contactList
+    label: Attendee Contact List (Excel format)
+  - key: banquet
+    label: Banquet Invitations
+  - key: emailBlast
+    label: Email Blast to Opted-In Attendees
+  - key: exclusive
+    label: Exclusive Presence Options
+  - key: premiumBooth
+    label: Premium Booth Space
+
+packages:
+  - name: Blog
+    price: "50.00"
+    benefits:
+      logo: true
+      swag: false
+      raffle: false
+      booth: false
+      contactList: false
+      banquet: false
+      emailBlast: false
+      exclusive: false
+      premiumBooth: false
+
+  - name: Bronze
+    price: "250.00"
+    benefits:
+      logo: true
+      swag: true
+      raffle: false
+      booth: false
+      contactList: false
+      banquet: false
+      emailBlast: false
+      exclusive: false
+      premiumBooth: false
+
+  - name: Silver
+    price: "600.00"
+    benefits:
+      logo: true
+      swag: true
+      raffle: true
+      booth: Small
+      contactList: false
+      banquet: false
+      emailBlast: false
+      exclusive: false
+      premiumBooth: false
+
+  - name: Unattended Booth
+    price: "1750.00"
+    benefits:
+      logo: true
+      swag: true
+      raffle: true
+      booth: Small
+      contactList: true
+      banquet: false
+      emailBlast: false
+      exclusive: false
+      premiumBooth: false
+
+  - name: Gold
+    price: "1500.00"
+    benefits:
+      logo: true
+      swag: true
+      raffle: true
+      booth: Large
+      contactList: true
+      banquet: true
+      emailBlast: true
+      exclusive: false
+      premiumBooth: false
+
+  - name: Platinum
+    price: "2500.00"
+    benefits:
+      logo: true
+      swag: true
+      raffle: true
+      booth: Large
+      contactList: true
+      banquet: true
+      emailBlast: "Yes (x2)"
+      exclusive: true
+      premiumBooth: "Available"

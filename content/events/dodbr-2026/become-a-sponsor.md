@@ -2,7 +2,6 @@
 title: Become a Sponsor
 description: Sponsor Day of Data Baton Rouge 2026 and reach hundreds of local IT professionals.
 wide: true
-aliases: ["/become-a-sponsor/"]
 ---
 
 Day of Data Baton Rouge is a **free, all-day technology conference** hosted by the [Baton Rouge User Groups](https://www.meetup.com/brusergroups/) — and it runs entirely on sponsor support. Now in its **17th year** (started in 2009), the event draws **450+ attendees**: SQL Server, data, .NET, cloud, BI, and IT professionals, plus students and folks in career transition from across the region. For sponsors it's a one-stop shop for **recruiting, brand exposure, and IT staff training** — and a way to give back to the local tech community.
@@ -17,17 +16,7 @@ SQL Server & database administrators, BI and ETL developers, data analysts, C#/.
 
 ## Sponsorship packages
 
-| Benefit | Blog $50 | Bronze $250 | Silver $600 | Unattended Booth $1750 | Gold $1500 | Platinum $2500 |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Logo on Website and printed materials | Yes | Yes | Yes | Yes | Yes | Yes |
-| Your Swag in 450 Bags | No | Yes | Yes | Yes | Yes | Yes |
-| Raffle Ticket for Day-End Raffle | No | No | Yes | Yes | Yes | Yes |
-| Booth Space | No | No | Small | Small | Large | Large |
-| Attendee Contact List (Excel format) | No | No | No | Yes | Yes | Yes |
-| Banquet Invitations | No | No | No | No | Yes | Yes |
-| Email Blast to Opted-In Attendees | No | No | No | No | Yes | Yes (x2) |
-| Exclusive Presence Options | No | No | No | No | No | Yes |
-| Premium Booth Space | No | No | No | No | No | Available |
+{{< sponsor-packages >}}
 
 Booth space is **limited and reserved first-come, first-served at time of payment** — we've sold out a month early the last two years. Silver, Gold, and Unattended Booth tiers each have only a handful of spots.
 

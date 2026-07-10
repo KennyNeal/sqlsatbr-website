@@ -118,13 +118,39 @@ lighter event lighter. Copy from `content/events/dodbr-2026/`:
 | `speakers.md` | Speakers (Sessionize wall) | `sessionizeId` on the event |
 | `precons.md`  | PreCons workshops | `precons.yaml` in the event folder |
 | `sponsors.md` | Sponsor listings | `sponsors.yaml` in the event folder |
+| `become-a-sponsor.md` | Sponsor Packages & pricing | `packages.yaml` in the event folder |
+| `invoice-request.md` | Sponsor Intake form | `packages.yaml`, plus `eventSlug` + `workerEndpoint` front matter |
 
-(You can also add `aliases:` in a sub-page if you want a short URL to redirect to it.)
+(You can also add `aliases:` in a sub-page if you want a short URL to redirect to it.
+Avoid aliasing a bare site-level URL like `/become-a-sponsor/` to one event's page — it
+welds that URL to a single Event Year forever.)
 
 ### Step 3 — Add sponsor data and logos
 
 If the event has sponsors, create `content/events/<slug>/sponsors.yaml` and
 `static/sponsors/<slug>/` (see section 1 for the format).
+
+### Step 3b — Publish that event's Sponsor Packages
+
+Each Event Year sets its own tiers and prices in `content/events/<slug>/packages.yaml`.
+There is no shared package list, and **a package name does not mean the same thing across
+events** — Silver may cost different amounts at different events. Copy
+`content/events/dodbr-2026/packages.yaml` as a starting point and edit it; the file's own
+comments explain the `featured`, `benefits`, and `packages` keys.
+
+That one file drives both the comparison table on `become-a-sponsor.md` (via the
+`{{< sponsor-packages >}}` shortcode) and the package dropdown on the Sponsor Intake form.
+Omit it entirely and both simply disappear.
+
+> **Prices live in two places, on purpose.** `packages.yaml` is what the site *shows*.
+> `PACKAGE_PRICING` in `worker/src/index.js` is what PayPal *charges*, keyed by event slug
+> then package name. They are separate so that editing site content can never change what
+> a sponsor is billed. **They must agree, and a test enforces it:** `worker/src/index.test.js`
+> reads every `packages.yaml` and fails if a price, a package, or an event is missing from
+> either side. `.github/workflows/worker-tests.yml` runs that test on any change to
+> `worker/**` or to any `packages.yaml`, so drift fails the PR instead of mispricing an
+> invoice. When you add an event's packages, add the matching `PACKAGE_PRICING` entry in
+> the same PR, then run `npm test` in `worker/` before pushing.
 
 ### Step 4 — PreCons data and headshots
 
@@ -224,7 +250,7 @@ so you can see this in action.
 - **Per-event pages** (`layouts/_default/schedule.html`, `speakers.html`, `precons.html`,
   `sponsors.html`) read the event via `.Parent.Params` and render the shared sub-nav
   (`layouts/partials/event-subnav.html`).
-- **Top navigation** is site-level (Events, Become a Sponsor, Past Events); the brand logo
+- **Top navigation** is site-level (Events, Past Events); the brand logo
   is the link home. Event-specific links live in the per-event sub-nav.
 - **Never hand-write a rooted internal link** (`{{ "/foo/" | relURL }}`). `relURL` leaves a
   leading `/` alone, so such links lose the `baseURL` subpath and 404 on the GitHub Pages

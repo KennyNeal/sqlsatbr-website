@@ -1,0 +1,4 @@
+{{/* Context: a Sponsor Package price string, e.g. "600.00". Returns it formatted for
+     display, e.g. "600". Prices are stored with cents so they match the amount the
+     Worker sends to PayPal exactly; whole-dollar packages read better without them. */}}
+{{ return strings.TrimSuffix ".00" . }}

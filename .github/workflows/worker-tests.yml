@@ -1,0 +1,45 @@
+name: Worker tests
+
+# Runs on changes to the Worker and to any event's published Sponsor Packages. The
+# packages.yaml path matters as much as the Worker source: index.test.js asserts that the
+# prices the site advertises match the prices the Worker invoices, so a content-only edit
+# to packages.yaml can break the build and must be checked here.
+on:
+  pull_request:
+    paths:
+      - "worker/**"
+      - "content/events/**/packages.yaml"
+      - ".github/workflows/worker-tests.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "worker/**"
+      - "content/events/**/packages.yaml"
+      - ".github/workflows/worker-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+
+      - name: Install dependencies
+        working-directory: worker
+        run: npm ci
+
+      - name: Run tests
+        working-directory: worker
+        run: npm test

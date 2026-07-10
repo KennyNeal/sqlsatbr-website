@@ -103,6 +103,13 @@ step-by-step editor guide. Key points:
   `publish-sponsor.yml` workflow drops downloaded/manual logos in
   `static/sponsorlogos/` instead — check where an event's existing logos actually live
   before adding a new one.
+- **Sponsor Packages are per-event data**: `content/events/<slug>/packages.yaml` lists the
+  tiers, prices, and benefit matrix for that Event Year. It drives both the comparison
+  table (`{{< sponsor-packages >}}` shortcode) and the Sponsor Intake form's package
+  dropdown, so the two can never disagree. Omit the file and both disappear — the event
+  simply has no published packages. Tiers and prices differ per event; nothing may assume
+  a package name means the same thing across Event Years. There is no site-level
+  "Become a Sponsor" nav entry: sponsorship is event-scoped and lives in the event sub-nav.
 
 ## Architecture: Worker (`worker/src/index.js`)
 
@@ -112,20 +119,29 @@ a couple of pure functions (`buildPayPalPayload`, `validateSubmission`) that
 
 - `GET /health` — checks PayPal config and fetches a live OAuth token.
 - `POST /api/invoice-request` — validates the sponsor submission, builds and sends a
-  PayPal invoice for the requested `sponsorPackage` (rates hardcoded in
-  `PACKAGE_PRICING`), then best-effort mirrors the submission into an organizer Google
+  PayPal invoice for the requested `sponsorPackage`, priced by `priceFor(eventSlug,
+  sponsorPackage)` against `PACKAGE_PRICING` — keyed by Event Year first, because a
+  package name alone never determines a price. `eventSlug` is therefore required. Then
+  best-effort mirrors the submission into an organizer Google
   Sheet via `relayToGoogleForm` (controlled by the `GOOGLE_FORM_RESPONSE_URL` /
   `GOOGLE_FORM_ENTRY_MAP` env vars — silently skipped if unset, and failures there never
   block the invoice response).
 - Responses are content-negotiated: `respondForRequest` returns JSON by default or a
   minimal HTML confirmation page if the request's `Accept` header prefers `text/html`
-  (used by the plain-HTML form fallback at `content/invoice-request.md` /
+  (used by the plain-HTML form fallback at `content/events/<slug>/invoice-request.md` /
   `layouts/_default/invoice-request.html`).
 - CORS is allow-listed via `ALLOWED_ORIGINS` (production domains + the GitHub Pages
   preview host + `localhost:1313`) — update this list if the preview or production host
   changes.
 - Required secrets: `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_ENV`
   (`sandbox`|`live`). Optional: `PAYPAL_INVOICER_EMAIL`.
+- **Pricing is duplicated on purpose, and the duplication is tested.** The site renders
+  from `content/events/<slug>/packages.yaml`; the Worker invoices from its own
+  `PACKAGE_PRICING`. They are kept separate so a content PR can never change what PayPal
+  charges, and so the browser never supplies an amount. A test in `index.test.js` reads
+  every `packages.yaml` and fails if the two disagree in either direction;
+  `.github/workflows/worker-tests.yml` runs it on changes to `worker/**` *or* any
+  `packages.yaml`. **Changing a price means editing both files in the same PR.**
 
 ## Domain language
 

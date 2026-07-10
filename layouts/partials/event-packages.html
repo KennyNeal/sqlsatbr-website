@@ -1,0 +1,8 @@
+{{/* Context: an event section page. Returns its parsed packages.yaml, or "" if the
+     event publishes no Sponsor Packages. Single place that knows where the data lives. */}}
+{{ $data := "" }}
+{{ with .Resources.Get "packages.yaml" }}
+  {{ $parsed := . | transform.Unmarshal }}
+  {{ with $parsed.packages }}{{ $data = $parsed }}{{ end }}
+{{ end }}
+{{ return $data }}
