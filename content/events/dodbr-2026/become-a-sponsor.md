@@ -20,7 +20,7 @@ SQL Server & database administrators, BI and ETL developers, data analysts, C#/.
 | Benefit | Blog $50 | Bronze $250 | Silver $600 | Unattended Booth $1750 | Gold $1500 | Platinum $2500 |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Logo on Website | Yes | Yes | Yes | Yes | Yes | Yes |
-| Your Swag in 450 Bags | No | No | Yes | Yes | Yes | Yes |
+| Your Swag in 450 Bags | No | Yes | Yes | Yes | Yes | Yes |
 | Raffle Ticket for Day-End Raffle | No | No | Yes | Yes | Yes | Yes |
 | Booth Space | No | No | Small | Small | Large | Large |
 | Attendee Contact List (Excel format) | No | No | No | Yes | Yes | Yes |
