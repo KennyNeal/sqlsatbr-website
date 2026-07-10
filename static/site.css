@@ -942,6 +942,18 @@ a {
   color: #9aa5b1;
 }
 
+.sponsor-table .cell-suffix {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--brand-muted);
+}
+
+.sponsor-table td.col-featured .cell-suffix {
+  color: var(--brand-primary);
+}
+
 .intake-form {
   margin-top: 0.5rem;
 }
