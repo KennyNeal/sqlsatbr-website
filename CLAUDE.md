@@ -73,6 +73,17 @@ step-by-step editor guide. Key points:
   `content/archive/` holds only legacy pre-migration history below that list.
   **Gotcha:** Hugo lowercases front matter param keys, so template queries must use
   `.Params.startdate`, not `.Params.startDate`.
+- **The home page is the featured event**: `layouts/index.html` renders the featured
+  event's body from `layouts/partials/event-body.html` — the same partial
+  `layouts/events/event.html` uses — then appends the "More upcoming events" grid and the
+  archive note. Put anything event-shaped in `event-body.html` so both pages get it; put
+  site-level content in `index.html` only. `event-subnav.html` links its title to the site
+  root when its event is the featured one, so the featured event has one destination.
+- **Never hand-write a rooted internal link** (`{{ "/foo/" | relURL }}`): `relURL` leaves a
+  leading `/` untouched, so the link drops the `baseURL` subpath and 404s on the GitHub
+  Pages preview host (it only works on the bare production domain). Derive URLs from page
+  objects — `.RelPermalink`, `site.Home.RelPermalink`, `(site.GetPage "/foo").RelPermalink`
+  — or use `pageRef` for `hugo.yaml` menu entries.
 - **Theming is data, not code**: site-wide default logo/colors live in `hugo.yaml`
   under `params`; any event can override `logo`/`primaryColor`/`secondaryColor` in its
   own front matter. `layouts/_default/baseof.html` resolves the active theme (event

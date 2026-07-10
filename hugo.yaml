@@ -12,14 +12,13 @@ params:
 
 menu:
   main:
-    - name: Home
-      pageRef: /
-      weight: 10
+    # No "Home" entry: the site root renders the featured event, and the brand
+    # logo in the banner is the link home.
     - name: Events
       pageRef: /events
       weight: 20
     - name: Become a Sponsor
-      url: /events/dodbr-2026/become-a-sponsor/
+      pageRef: /events/dodbr-2026/become-a-sponsor
       weight: 25
     - name: Past Events
       pageRef: /archive

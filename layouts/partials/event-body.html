@@ -1,0 +1,119 @@
+{{/* Context: an event section page. Renders the full event body, shared by the
+     event page and the home page (which features the soonest upcoming event). */}}
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text stack">
+      {{ with .Params.dateRange }}<p class="hero-date">{{ . }}</p>{{ end }}
+      <h2 class="hero-title">{{ .Title }}</h2>
+      {{ with .Params.intro }}<p class="hero-tagline">{{ . }}</p>{{ end }}
+      {{ with .Params.registrationUrl }}
+        <div class="button-row hero-actions">
+          <a class="button button-hero" href="{{ . }}">Register free</a>
+        </div>
+      {{ end }}
+    </div>
+    <div class="hero-visual">
+      <img class="hero-logo" src="{{ (.Params.logo | default site.Params.logo) | relURL }}" alt="{{ .Title }} logo" width="144" height="144">
+    </div>
+  </div>
+</section>
+
+{{ partial "event-subnav.html" . }}
+
+<section class="section-pillars">
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-value">Free</span>
+      <span class="pillar-label">No cost to attend</span>
+    </div>
+    <div class="pillar">
+      <span class="pillar-value">All day</span>
+      <span class="pillar-label">Talks from morning to evening</span>
+    </div>
+    <div class="pillar">
+      <span class="pillar-value">Community</span>
+      <span class="pillar-label">Hosted by the Baton Rouge User Groups</span>
+    </div>
+  </div>
+</section>
+
+{{ if or .Params.preconsVenueName .Params.eventVenueName }}
+  <section class="section">
+    <div class="section-inner stack">
+      <h2 class="section-heading">When &amp; where</h2>
+      <div class="venue-grid">
+        {{ with .Params.preconsVenueName }}
+          <div class="venue-card stack stack-tight">
+            <p class="venue-day">Friday &middot; PreCons</p>
+            <h3>{{ . }}</h3>
+            {{ with $.Params.preconsVenueAddress }}<p><a href="https://www.google.com/maps/search/?api=1&query={{ . | urlquery }}" target="_blank" rel="noopener">{{ . }}</a></p>{{ end }}
+          </div>
+        {{ end }}
+        {{ with .Params.eventVenueName }}
+          <div class="venue-card stack stack-tight">
+            <p class="venue-day">Main Event</p>
+            <h3>{{ . }}</h3>
+            {{ with $.Params.eventVenueAddress }}<p><a href="https://www.google.com/maps/search/?api=1&query={{ . | urlquery }}" target="_blank" rel="noopener">{{ . }}</a></p>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+
+{{ with .Resources.Get "precons.yaml" }}
+  {{ $preconsData := . | transform.Unmarshal }}
+  {{ with $preconsData.precons }}
+    <section class="section">
+      <div class="section-inner stack">
+        <h2 class="section-heading">PreCons</h2>
+        {{ with $.Params.preconsIntro }}<p class="lede-prose">{{ . }}</p>{{ end }}
+        <div class="precon-teaser-grid">
+          {{ range $p := . }}
+            <article class="precon-teaser-card">
+              {{ with $p.photo }}<img class="precon-teaser-photo" src="{{ . | relURL }}" alt="{{ $p.name }}" width="64" height="64" loading="lazy">{{ end }}
+              <div class="stack stack-tight">
+                {{ with $p.credential }}<p class="precon-credential">{{ . }}</p>{{ end }}
+                <h3 class="precon-teaser-name">{{ $p.title }}</h3>
+                <p class="precon-teaser-instructor">{{ $p.name }}</p>
+                {{ with $p.time }}<p class="precon-teaser-time">{{ . }}</p>{{ end }}
+                {{ with $p.price }}<p class="precon-teaser-price">{{ . }}</p>{{ end }}
+              </div>
+            </article>
+          {{ end }}
+        </div>
+        {{ with $.GetPage "precons" }}
+          <div class="button-row"><a class="button button-secondary" href="{{ .RelPermalink }}">View Precon Details</a></div>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
+
+{{ with .Params.sessionizeId }}
+  <section class="section section-light">
+    <div class="section-inner section-inner-full stack">
+      <h2 class="section-heading">Speakers</h2>
+      <div class="speakers-embed">
+        <div id="sessionize-speakers"></div>
+        <script type="text/javascript" src="https://sessionize.com/api/v2/{{ . }}/view/SpeakerWall"></script>
+        <noscript>
+          <p>The speaker list requires JavaScript. View the full lineup on
+            <a href="https://sessionize.com/api/v2/{{ . }}/view/Speakers">Sessionize</a>.</p>
+        </noscript>
+      </div>
+      {{ with $.GetPage "schedule" }}
+        <div class="button-row"><a class="button" href="{{ .RelPermalink }}">View full schedule</a></div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{ with .Content }}
+  <section class="section">
+    <div class="section-inner stack">
+      <h2 class="section-heading">About the event</h2>
+      <div class="prose lede-prose">{{ . }}</div>
+    </div>
+  </section>
+{{ end }}
