@@ -915,6 +915,10 @@ a {
   color: #ffffff;
 }
 
+.sponsor-table th.col-featured .tier-price {
+  color: #ffffff;
+}
+
 .sponsor-table td.col-featured {
   background: color-mix(in srgb, var(--brand-secondary) 14%, #ffffff);
 }
