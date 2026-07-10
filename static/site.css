@@ -345,13 +345,15 @@ body {
 }
 
 /* Venue cards */
-.venue-grid {
+.venue-grid,
+.role-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
 
-.venue-card {
+.venue-card,
+.role-card {
   padding: 1.5rem;
   border: 1px solid var(--brand-border);
   border-left: 5px solid var(--brand-primary);
@@ -359,9 +361,25 @@ body {
   background: #ffffff;
 }
 
-.venue-card h3 {
+.venue-card h3,
+.role-card h3 {
   margin: 0;
   font-size: 1.25rem;
+}
+
+.role-tagline {
+  margin: 0;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.role-card p:last-child {
+  margin-bottom: 0;
+}
+
+.role-everyone {
+  margin: 0;
+  font-style: italic;
 }
 
 .venue-day {

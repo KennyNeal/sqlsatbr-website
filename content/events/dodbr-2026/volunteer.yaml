@@ -1,0 +1,50 @@
+# Volunteer roles for this Event Year.
+#
+# Drives the Volunteer page (volunteer.md, layout: volunteer). The sign-up button uses
+# the event's `volunteerUrl` front matter, so this file is descriptions only — no links.
+# Omit this file and the Volunteer page's role list disappears; omit volunteer.md and the
+# event sub-nav falls back to linking `volunteerUrl` directly.
+#
+# These are recruiting descriptions, not day-of instructions. The detailed checklists
+# (what time lunch starts, where supplies go) belong in the handout volunteers get on the
+# day, where they can change without a site deploy.
+
+roles:
+  - name: Registration Desk
+    tagline: You are the first face!
+    description: >-
+      Greet attendees and speakers as they arrive, hand out bags, badges, and schedules,
+      and get everyone wristbanded for the day-end raffle. The best spot for meeting
+      absolutely everyone.
+
+  - name: Room Monitor
+    tagline: Help the speaker
+    description: >-
+      Introduce your speaker, keep the session on time with a five-minute warning, and
+      make sure evaluation forms get filled out. You get a front-row seat to every talk
+      in your room.
+
+  - name: Greeter & Info Desk
+    tagline: Point people the right way
+    description: >-
+      Keep a map and a schedule on hand, answer questions with a smile, and help people
+      find their next session. Ideal if you like talking to people and knowing what's
+      going on everywhere.
+
+  - name: Breakfast & Setup
+    tagline: Start the day off right
+    description: >-
+      Help set up the dining area and coffee before doors open, welcome our vendors and
+      lend a hand with their booths, and keep the breakfast spread stocked through the
+      morning rush.
+
+  - name: Lunch & Snacks
+    tagline: Keep everyone fed
+    description: >-
+      Help the caterer prep and serve lunch, keep drinks cold and the line moving, and
+      make sure the vegetarian meals reach the people who need them.
+
+# Shown under the role list. The 2018 handout put this as its "Everyone:" line.
+everyoneNote: >-
+  However you help, we ask everyone to send attendees to the closing raffle at the end of
+  the day and to pitch in putting the space back the way we found it.

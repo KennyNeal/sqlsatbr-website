@@ -11,7 +11,11 @@
       {{ range .Pages }}
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
       {{ end }}
-      {{ with .Params.volunteerUrl }}<a href="{{ . }}">Volunteer</a>{{ end }}
+      {{/* An event with a Volunteer page already links it above, via .Pages. Only fall
+           back to sending people straight to the sign-up form when it has no such page. */}}
+      {{ if not (.GetPage "volunteer") }}
+        {{ with .Params.volunteerUrl }}<a href="{{ . }}">Volunteer</a>{{ end }}
+      {{ end }}
       {{ with .Params.registrationUrl }}<a class="event-subnav-register" href="{{ . }}">Register</a>{{ end }}
     </div>
   </div>

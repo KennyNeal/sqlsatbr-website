@@ -93,7 +93,9 @@ startDate: 2027-04-17          # drives "upcoming" sorting and the featured slot
 dateRange: April 17, 2027      # display text
 registrationUrl: https://…     # this event's Eventbrite (omit ⇒ no Register button)
 sessionizeId: abcd1234         # this event's Sessionize id (omit ⇒ no Schedule/Speakers)
-volunteerUrl: https://…        # SignupGenius (omit ⇒ no Volunteer link)
+volunteerUrl: https://…        # SignupGenius; the Volunteer page's sign-up button
+                               # (omit ⇒ no button, and no Volunteer link if there's
+                               # also no volunteer.md)
 preconsVenueName / preconsVenueAddress
 eventVenueName / eventVenueAddress
 preconsIntro: ...              # only if it has PreCons
@@ -120,6 +122,7 @@ lighter event lighter. Copy from `content/events/dodbr-2026/`:
 | `sponsors.md` | Sponsor listings | `sponsors.yaml` in the event folder |
 | `become-a-sponsor.md` | Sponsor Packages & pricing | `packages.yaml` in the event folder |
 | `invoice-request.md` | Sponsor Intake form | `packages.yaml`, plus `eventSlug` + `workerEndpoint` front matter |
+| `volunteer.md` | Volunteer roles & sign-up CTA | `volunteer.yaml` in the event folder, plus `volunteerUrl` on the event |
 
 (You can also add `aliases:` in a sub-page if you want a short URL to redirect to it.
 Avoid aliasing a bare site-level URL like `/become-a-sponsor/` to one event's page — it
@@ -129,6 +132,18 @@ welds that URL to a single Event Year forever.)
 
 If the event has sponsors, create `content/events/<slug>/sponsors.yaml` and
 `static/sponsors/<slug>/` (see section 1 for the format).
+
+### Step 3a — Volunteer roles
+
+If the event needs volunteers, add `content/events/<slug>/volunteer.md` (`layout: volunteer`)
+and `content/events/<slug>/volunteer.yaml` listing the roles. Set `volunteerUrl` on the
+event to your SignUpGenius link — that becomes the page's sign-up button.
+
+Keep `volunteer.yaml` to short recruiting descriptions. Day-of instructions (what time
+lunch starts, where supplies go) belong in the handout volunteers get on the day, not on
+the public site, where every operational tweak would need a deploy.
+
+With no `volunteer.md`, the event sub-nav links `volunteerUrl` directly, as before.
 
 ### Step 3b — Publish that event's Sponsor Packages
 

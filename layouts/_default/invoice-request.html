@@ -5,6 +5,7 @@
       {{ with .Description }}<p class="page-header-lede">{{ . }}</p>{{ end }}
     </div>
   </header>
+  {{ partial "event-subnav.html" .Parent }}
   <section class="section">
     <div class="section-inner narrow stack">
     <div class="stack prose">

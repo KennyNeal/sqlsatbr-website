@@ -103,6 +103,15 @@ step-by-step editor guide. Key points:
   `publish-sponsor.yml` workflow drops downloaded/manual logos in
   `static/sponsorlogos/` instead — check where an event's existing logos actually live
   before adding a new one.
+- **Every page inside an event section renders the event sub-nav.** Pages with an explicit
+  `layout:` call `partial "event-subnav.html" .Parent` themselves; those without one
+  (`become-a-sponsor.md`) get it from `layouts/events/single.html`. Skipping it strands the
+  page — there is no site-level nav entry to climb back out through.
+- **Volunteer roles are per-event data**: `content/events/<slug>/volunteer.yaml` +
+  `volunteer.md` (`layout: volunteer`) render the roles list and a sign-up CTA pointing at
+  the event's `volunteerUrl`. `event-subnav.html` links the Volunteer *page* when one
+  exists and falls back to linking `volunteerUrl` directly when it doesn't, so the two
+  never both appear.
 - **Sponsor Packages are per-event data**: `content/events/<slug>/packages.yaml` lists the
   tiers, prices, and benefit matrix for that Event Year. It drives both the comparison
   table (`{{< sponsor-packages >}}` shortcode) and the Sponsor Intake form's package
