@@ -5,6 +5,7 @@
       {{ with .Description }}<p class="page-header-lede">{{ . }}</p>{{ end }}
     </div>
   </header>
+  {{ partial "event-subnav.html" .Parent }}
   <section class="section">
     <div class="section-inner narrow stack">
     <div class="stack prose">
@@ -33,14 +34,15 @@
         </label>
         <label class="field stack-tight" for="sponsorPackage">
           <span>Requested Sponsor Package</span>
+          {{/* Options come from the event's packages.yaml, the same source as the
+               comparison table, so the two can never list different packages. */}}
           <select id="sponsorPackage" name="sponsorPackage" required>
             <option value="">Select a package</option>
-            <option>Blog</option>
-            <option>Bronze</option>
-            <option>Silver</option>
-            <option>Gold</option>
-            <option>Unattended Booth</option>
-            <option>Platinum</option>
+            {{- with partial "event-packages.html" .Parent }}
+              {{- range .packages }}
+            <option value="{{ .name }}">{{ .name }} &mdash; ${{ partial "package-price.html" .price }}</option>
+              {{- end }}
+            {{- end }}
             <option>Other</option>
           </select>
         </label>

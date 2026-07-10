@@ -1,0 +1,54 @@
+{{ define "main" }}
+  {{ $event := .Parent }}
+  {{ $data := "" }}
+  {{ with $event.Resources.Get "volunteer.yaml" }}{{ $data = . | transform.Unmarshal }}{{ end }}
+  {{ $signUpUrl := $event.Params.volunteerUrl }}
+
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="page-header-lede">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  {{ partial "event-subnav.html" $event }}
+
+  {{ with .Content }}
+    <section class="section">
+      <div class="section-inner stack">
+        <div class="prose lede-prose">{{ . }}</div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{ with $data.roles }}
+    <section class="section section-light">
+      <div class="section-inner stack">
+        <h2 class="section-heading">Roles we need filled</h2>
+        <div class="role-grid">
+          {{ range . }}
+            <article class="role-card stack stack-tight">
+              <h3>{{ .name }}</h3>
+              {{ with .tagline }}<p class="role-tagline">{{ . }}</p>{{ end }}
+              {{ with .description }}<p>{{ . }}</p>{{ end }}
+            </article>
+          {{ end }}
+        </div>
+        {{ with $data.everyoneNote }}<p class="role-everyone">{{ . }}</p>{{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  {{ with $signUpUrl }}
+    <section class="section">
+      <div class="section-inner stack">
+        <h2 class="section-heading">Ready to help?</h2>
+        <p class="lede-prose">Pick a role and a time slot on SignUpGenius. Not sure which
+          one? Sign up for anything &mdash; we'll sort it out on the day.</p>
+        <div class="button-row">
+          <a class="button" href="{{ . }}" target="_blank" rel="noopener">Sign up to volunteer</a>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

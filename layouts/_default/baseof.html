@@ -61,29 +61,13 @@
         <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </label>
+        {{/* Sponsorship is event-scoped: each event's sub-nav links its own
+             Become a Sponsor page, so there is no site-level sponsor entry. */}}
         <nav class="site-nav" aria-label="Primary">
           {{ $current := . }}
-          {{ $featuredEvent := partial "featured-event.html" . }}
           {{ range site.Menus.main }}
             {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
-            {{ $url := .URL }}
-            {{ if eq .Name "Become a Sponsor" }}
-              {{ $resolved := false }}
-              {{ with $themeEvent }}
-                {{ with .GetPage "become-a-sponsor" }}
-                  {{ $url = .RelPermalink }}
-                  {{ $resolved = true }}
-                {{ end }}
-              {{ end }}
-              {{ if not $resolved }}
-                {{ with $featuredEvent }}
-                  {{ with .GetPage "become-a-sponsor" }}
-                    {{ $url = .RelPermalink }}
-                  {{ end }}
-                {{ end }}
-              {{ end }}
-            {{ end }}
-            <a href="{{ $url }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
           {{ end }}
         </nav>
       </div>

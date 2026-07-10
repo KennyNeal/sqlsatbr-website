@@ -1,0 +1,21 @@
+{{/* Regular pages inside an event section that don't name a layout — currently
+     become-a-sponsor.md. Same as _default/single.html, plus the event sub-nav, so an
+     event's pages are never a dead end now that sponsorship has no site-level nav entry. */}}
+{{ define "main" }}
+  {{ $event := .Parent }}
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h2>{{ .Title }}</h2>
+      {{ with .Description }}<p class="page-header-lede">{{ . }}</p>{{ end }}
+      {{ with .Params.dateLabel }}<p class="eyebrow eyebrow-light">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  {{ partial "event-subnav.html" $event }}
+  <section class="section">
+    <div class="section-inner{{ if not .Params.wide }} narrow{{ end }}">
+      <div class="stack prose">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}

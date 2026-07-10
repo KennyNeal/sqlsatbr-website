@@ -1,0 +1,52 @@
+{{/* Sponsor Package comparison table for the enclosing event, from its packages.yaml.
+     Renders nothing when the event publishes no packages. */}}
+{{- $event := .Page.Parent -}}
+{{- with partial "event-packages.html" $event -}}
+  {{- $featured := .featured -}}
+  {{- $benefits := .benefits -}}
+  {{- $packages := .packages -}}
+  <table class="sponsor-table">
+    <caption class="sr-only">Sponsorship package comparison by benefit</caption>
+    <thead>
+      <tr>
+        <th>Benefit</th>
+        {{- range $packages }}
+        {{- $isFeatured := eq .name $featured }}
+        <th{{ if $isFeatured }} class="col-featured"{{ end }}>
+          <span class="tier-name">{{ .name }}</span><span class="tier-price">${{ partial "package-price.html" .price }}</span>
+          {{- if $isFeatured }}<span class="tier-badge">Most Exclusive</span>{{ end }}
+        </th>
+        {{- end }}
+      </tr>
+    </thead>
+    <tbody>
+      {{- range $benefit := $benefits }}
+      <tr>
+        <td>{{ $benefit.label }}</td>
+        {{- range $pkg := $packages }}
+        {{- $isFeatured := eq $pkg.name $featured -}}
+        {{- $value := index $pkg.benefits $benefit.key -}}
+        {{- $cls := cond $isFeatured " col-featured" "" -}}
+        {{- if eq $value true }}
+        <td class="cell-yes{{ $cls }}"><span class="icon icon-yes" aria-hidden="true">&#10003;</span><span class="sr-only">Yes</span></td>
+        {{- else if not $value }}
+        {{- /* false, or the benefit key omitted entirely */}}
+        <td class="cell-no{{ $cls }}"><span class="icon icon-no" aria-hidden="true">&#8211;</span><span class="sr-only">No</span></td>
+        {{- else }}
+          {{- $text := printf "%v" $value -}}
+          {{- $head := index (split $text " ") 0 -}}
+          {{- $suffix := trim (strings.TrimPrefix $head $text) " " -}}
+          {{- if eq (lower $head) "yes" }}
+        <td class="cell-yes{{ $cls }}"><span class="icon icon-yes" aria-hidden="true">&#10003;</span>{{ with $suffix }}<span class="cell-suffix">{{ . }}</span>{{ end }}<span class="sr-only">Yes{{ with $suffix }} {{ . }}{{ end }}</span></td>
+          {{- else if eq (lower $head) "no" }}
+        <td class="cell-no{{ $cls }}"><span class="icon icon-no" aria-hidden="true">&#8211;</span>{{ with $suffix }}<span class="cell-suffix">{{ . }}</span>{{ end }}<span class="sr-only">No{{ with $suffix }} {{ . }}{{ end }}</span></td>
+          {{- else }}
+        <td{{ if $isFeatured }} class="col-featured"{{ end }}>{{ $text }}</td>
+          {{- end }}
+        {{- end }}
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+{{- end -}}

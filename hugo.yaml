@@ -17,9 +17,8 @@ menu:
     - name: Events
       pageRef: /events
       weight: 20
-    - name: Become a Sponsor
-      pageRef: /events/dodbr-2026/become-a-sponsor
-      weight: 25
+    # No site-level "Become a Sponsor": Sponsor Packages and pricing are per-event,
+    # so the link belongs in each event's sub-nav, where it already appears.
     - name: Past Events
       pageRef: /archive
       weight: 30
