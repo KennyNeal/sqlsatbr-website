@@ -1,7 +1,12 @@
-{{/* Context: an event section page. Renders links to its sub-pages plus CTAs. */}}
+{{/* Context: an event section page. Renders links to its sub-pages plus CTAs.
+     The featured event is served at the site root, so its title links home. */}}
+{{ $titleUrl := .RelPermalink }}
+{{ with partial "featured-event.html" . }}
+  {{ if eq .RelPermalink $.RelPermalink }}{{ $titleUrl = site.Home.RelPermalink }}{{ end }}
+{{ end }}
 <nav class="event-subnav" aria-label="Event sections">
   <div class="event-subnav-inner">
-    <a class="event-subnav-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <a class="event-subnav-title" href="{{ $titleUrl }}">{{ .Title }}</a>
     <div class="event-subnav-links">
       {{ range .Pages }}
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>

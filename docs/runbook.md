@@ -207,7 +207,13 @@ so you can see this in action.
   event sections, split them into upcoming/past by comparing `startDate` to today, and
   sort by date. The home features the soonest upcoming event (falling back to the most
   recent past one) via `layouts/partials/featured-event.html`, and inherits that event's
-  theme. **No manual archiving is needed:** once an event's `startDate` passes, it leaves
+  theme. **The home page *is* the featured event:** it renders that event's full body from
+  `layouts/partials/event-body.html` — the same partial `layouts/events/event.html` uses —
+  then appends a "More upcoming events" grid and an archive note. The event keeps its own
+  URL too, so its sub-nav title links home rather than to a second copy of the same page,
+  and it carries a `rel="canonical"` pointing at the site root so search engines treat the
+  two URLs as one page. All of this follows whichever event is currently featured, with no
+  edits when one event supersedes another. **No manual archiving is needed:** once an event's `startDate` passes, it leaves
   the home/upcoming automatically and appears on the **Past Events** page (which lists
   finished events from `content/events/` above the legacy `content/archive/` entries).
   The one exception: if there's **no upcoming event**, the most recent event stays
@@ -218,5 +224,10 @@ so you can see this in action.
 - **Per-event pages** (`layouts/_default/schedule.html`, `speakers.html`, `precons.html`,
   `sponsors.html`) read the event via `.Parent.Params` and render the shared sub-nav
   (`layouts/partials/event-subnav.html`).
-- **Top navigation** is site-level (Home, Events, Become a Sponsor, Past Events);
-  event-specific links live in the per-event sub-nav.
+- **Top navigation** is site-level (Events, Become a Sponsor, Past Events); the brand logo
+  is the link home. Event-specific links live in the per-event sub-nav.
+- **Never hand-write a rooted internal link** (`{{ "/foo/" | relURL }}`). `relURL` leaves a
+  leading `/` alone, so such links lose the `baseURL` subpath and 404 on the GitHub Pages
+  preview host. Derive the URL from the page instead — `.RelPermalink`,
+  `site.Home.RelPermalink`, `(site.GetPage "/foo").RelPermalink` — or use `pageRef` in
+  `hugo.yaml` menus.

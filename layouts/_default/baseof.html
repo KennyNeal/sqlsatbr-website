@@ -7,15 +7,24 @@
     {{- $secondary := site.Params.secondaryColor -}}
     {{- $themeEvent := "" -}}
     {{- if eq .Section "events" -}}{{- $themeEvent = .CurrentSection -}}{{- end -}}
+    {{- if .IsHome -}}{{- $themeEvent = partial "featured-event.html" . -}}{{- end -}}
     {{- with $themeEvent -}}
       {{- with .Params.logo }}{{ $logo = . }}{{ end -}}
       {{- with .Params.primaryColor }}{{ $primary = . }}{{ end -}}
       {{- with .Params.secondaryColor }}{{ $secondary = . }}{{ end -}}
     {{- end -}}
+    {{- /* Canonical URL. Pages are self-canonical, except the featured event: its body
+           is also served at the site root, so point search engines there. Which event is
+           featured changes as dates pass, so this must be computed, never hardcoded. */ -}}
+    {{- $canonical := .Permalink -}}
+    {{- with partial "featured-event.html" . -}}
+      {{- if eq .RelPermalink $.RelPermalink -}}{{- $canonical = site.Home.Permalink -}}{{- end -}}
+    {{- end -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+    <title>{{ if and .Title (not .IsHome) }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
+    <link rel="canonical" href="{{ $canonical }}">
     <script>
       (function () {
         var host = window.location.hostname.toLowerCase();
@@ -44,7 +53,7 @@
   <body>
     <header class="site-banner">
       <div class="banner-inner">
-        <a class="brand" href="{{ "/" | relURL }}">
+        <a class="brand" href="{{ site.Home.RelPermalink }}">
           <img class="brand-logo" src="{{ $logo | relURL }}" alt="Day of Data Baton Rouge logo" width="44" height="44">
           <span>#DayOfDataBR</span>
         </a>
@@ -67,8 +76,10 @@
                 {{ end }}
               {{ end }}
               {{ if not $resolved }}
-                {{ with $featuredEvent.GetPage "become-a-sponsor" }}
-                  {{ $url = .RelPermalink }}
+                {{ with $featuredEvent }}
+                  {{ with .GetPage "become-a-sponsor" }}
+                    {{ $url = .RelPermalink }}
+                  {{ end }}
                 {{ end }}
               {{ end }}
             {{ end }}
@@ -84,7 +95,7 @@
       <div class="footer-inner">
         <p>Day of Data Baton Rouge &mdash; hosted by the <a href="https://www.meetup.com/brusergroups/">Baton Rouge User Groups</a>.</p>
         <p class="footer-links">
-          <a href="{{ "/code-of-conduct/" | relURL }}">Code of Conduct</a>
+          {{ with site.GetPage "/code-of-conduct" }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
           <a href="https://bsky.app/profile/sqlsatbr.com">Bluesky</a>
           <a href="http://www.twitter.com/sqlsatbr">Twitter</a>
         </p>
