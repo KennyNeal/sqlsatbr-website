@@ -36,11 +36,13 @@
       {{- range $i, $cell := . }}
       {{- $t := trim (printf "%s" $cell.Text) " " -}}
       {{- $isFeatured := eq $i $featuredIdx -}}
-      {{- $lower := lower $t -}}
-      {{- if eq $lower "yes" }}
-      <td class="cell-yes{{ if $isFeatured }} col-featured{{ end }}"><span class="icon icon-yes" aria-hidden="true">&#10003;</span><span class="sr-only">Yes</span></td>
-      {{- else if eq $lower "no" }}
-      <td class="cell-no{{ if $isFeatured }} col-featured{{ end }}"><span class="icon icon-no" aria-hidden="true">&#8211;</span><span class="sr-only">No</span></td>
+      {{- $firstWord := index (split $t " ") 0 -}}
+      {{- $firstLower := lower $firstWord -}}
+      {{- $suffix := trim (strings.TrimPrefix $firstWord $t) " " -}}
+      {{- if eq $firstLower "yes" }}
+      <td class="cell-yes{{ if $isFeatured }} col-featured{{ end }}"><span class="icon icon-yes" aria-hidden="true">&#10003;</span>{{ with $suffix }}<span class="cell-suffix">{{ . }}</span>{{ end }}<span class="sr-only">Yes{{ with $suffix }} {{ . }}{{ end }}</span></td>
+      {{- else if eq $firstLower "no" }}
+      <td class="cell-no{{ if $isFeatured }} col-featured{{ end }}"><span class="icon icon-no" aria-hidden="true">&#8211;</span>{{ with $suffix }}<span class="cell-suffix">{{ . }}</span>{{ end }}<span class="sr-only">No{{ with $suffix }} {{ . }}{{ end }}</span></td>
       {{- else }}
       <td{{ if $isFeatured }} class="col-featured"{{ end }}>{{ $cell.Text }}</td>
       {{- end }}
