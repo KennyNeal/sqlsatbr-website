@@ -18,7 +18,7 @@ groups:
   - name: Excella
     url: https://www.excella.com/
     logo: sponsorlogos/excella.jpg
-  - name: Redgate 
+  - name: Redgate
     url: https://www.red-gate.com/
     logo: sponsorlogos/red-gate.svg
 - title: Facility Sponsor
@@ -80,6 +80,9 @@ groups:
   - name: Forward Data Consultants
     url: https://moveforward.co/
     logo: sponsorlogos/forward-data-consultants.png
+  - name: MP Insight
+    url: https://www.mpinsight.org/
+    logo: sponsorlogos/mp-insight.png
 - title: Bronze Sponsors
   tier: bronze
   sponsors:
